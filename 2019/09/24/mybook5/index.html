@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="学习 TypeScript 笔记," />
+   
+  <meta name="description" content="学习笔记" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    学习 TypeScript 笔记 |  王雪龙的博客
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?50f197ec88c3c04868527cf9f28afa0c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-mybook5" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  学习 TypeScript 笔记
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/09/24/mybook5/" class="article-date">
+  <time datetime="2019-09-24T07:16:00.000Z" itemprop="datePublished">2019-09-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+  <div class="article-gallery">
+    <div class="article-gallery-photos">
+      
+        
+          <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/TS.jpg.png" itemprop="image">
+        
+      
+    </div>
+  </div>
+
+
+      
+      <h1 id="学习-TypeScript-笔记"><a href="#学习-TypeScript-笔记" class="headerlink" title="学习 TypeScript 笔记"></a>学习 TypeScript 笔记</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">仅仅个人用来做笔记，如有不对请指出。</span><br><span class="line">我是看的技术胖的视频，然后自己总结的笔记，想去看视频的同学，请去 </span><br><span class="line">https:&#x2F;&#x2F;jspang.com</span><br></pre></td></tr></table></figure>
+<h2 id="初识TypeScript"><a href="#初识TypeScript" class="headerlink" title="初识TypeScript"></a>初识TypeScript</h2><p> TypeScript是JavaScript 的超集 </p>
+<p> 适合用于大型应用 或者多人合作</p>
+<p> TypeScript 还是会像 less sass 一样 会在最后编译成JavaScript 和css</p>
+<p> 跨平台 且开源  注：js一定要学懂在看</p>
+<p> js库 TS 也可以使用</p>
+<p> TypeScript 提供了一些 类 接口 模块  利于组件化开发</p>
+<p> Vue Ng React 推荐使用TypeScript</p>
+<h2 id="开发环境-安装"><a href="#开发环境-安装" class="headerlink" title="开发环境 安装"></a>开发环境 安装</h2><p> <a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a> 先安装Node 可以安装最新版 具体百度</p>
+<p> npm install typeScript -g 安装TS  </p>
+<p> tsc –version 查看版本如果出来说明安装成功 </p>
+<p> npm init -y -y表示默认</p>
+<p> tsc –init 会生成一个tsconfig.JSON  是用来编译成js文件 的一个文件 eg：有时运行不好使 请删除这个重新下载</p>
+<p> npm install @types/node –dev-save 解决模块生名文件问题</p>
+<p> 然后就可以写文件了</p>
+<pre><code>var a:string =&quot;Hello TS&quot;;</code></pre><p>右键编译 转换成js 然后使用 node 文件名.js 出现你打的文字就说明成功</p>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><p> javascript 是弱类型语言 TypeScript是强类型语言 TypeScript有很多类型</p>
+<h3 id="1-undefined类型、"><a href="#1-undefined类型、" class="headerlink" title="1.undefined类型、"></a>1.undefined类型、</h3><p> 没赋值就是undefined</p>
+<h3 id="2-number类型"><a href="#2-number类型" class="headerlink" title="2.number类型"></a>2.number类型</h3><p> 不仅可以设置整数类型 也可以设置小数类型<br> NAN 全称 Not a Number</p>
+<h3 id="3-string类型"><a href="#3-string类型" class="headerlink" title="3.string类型"></a>3.string类型</h3><p> 单引号 双引号都是string类型</p>
+<h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h3><p> true false 只有这两个值 没有0 1</p>
+<h3 id="enum类型枚举类型"><a href="#enum类型枚举类型" class="headerlink" title="enum类型枚举类型"></a>enum类型枚举类型</h3><p> eg：人的类型：男 女 中(:技术胖日常开车<br> eg： enum REN(通常用大写声明) </p>
+<pre><code>enum REN(nan,nv,yao));
+console.log(REN.yao);//打印索引下标
+enum RENN(nan=&apos;男人&apos;.nv=&apos;女&apos;);
+console.log(RENN.nan);//打印男人</code></pre><h3 id="any-类型"><a href="#any-类型" class="headerlink" title="any 类型"></a>any 类型</h3><p> eg：就是任何类型啥都行 （我感觉就是返回js类）</p>
+<pre><code>var t:any =10 
+t=true;
+console.log(t);打印true</code></pre><h3 id="void-空类型"><a href="#void-空类型" class="headerlink" title="void 空类型"></a>void 空类型</h3><h3 id="Array-数组类型"><a href="#Array-数组类型" class="headerlink" title="Array 数组类型"></a>Array 数组类型</h3><h3 id="Tuple-元祖类型"><a href="#Tuple-元祖类型" class="headerlink" title="Tuple 元祖类型"></a>Tuple 元祖类型</h3><h3 id="Null-空类型"><a href="#Null-空类型" class="headerlink" title="Null 空类型"></a>Null 空类型</h3><h2 id="TypeScript的函数"><a href="#TypeScript的函数" class="headerlink" title="TypeScript的函数"></a>TypeScript的函数</h2><p> eg:代码的复用 </p>
+<pre><code>function searchAV(AV:string):string{
+
+    return &apos;search your AV&apos; +AV;
+}
+var AV:string=&apos;010294590&apos;;
+var result:string =searchAV(AV)
+console.log(result);</code></pre><p> eg: ?是可以不传的参数</p>
+<pre><code>function searchAV(AV:string,AVMING?:string):string{
+    if(AVMING===undefind){
+        return &apos;search your AVMING&apos; +AV+AVMING;
+    }else{
+        return &apos;search your AV&apos; +AV;
+    }
+
+
+}
+var AV:string=&apos;010294590&apos;;
+var result:string =searchAV(AV)
+console.log(result);</code></pre><h2 id="三种函数得定义方式-完全支持ES-6-7-8-…"><a href="#三种函数得定义方式-完全支持ES-6-7-8-…" class="headerlink" title="三种函数得定义方式(完全支持ES 6,7,8,…)"></a>三种函数得定义方式(完全支持ES 6,7,8,…)</h2><h3 id="函数声明法"><a href="#函数声明法" class="headerlink" title="函数声明法"></a>函数声明法</h3><pre><code>function add(n1:number,n2:number){
+    return n1+n2;
+}
+console.log(add(1,2));//打印3</code></pre><h3 id="函数表达式法"><a href="#函数表达式法" class="headerlink" title="函数表达式法"></a>函数表达式法</h3><pre><code>var add =function(n1:number,n2:number){
+    return n1+n2;
+}
+console.log(add(1,2));//打印3</code></pre><h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><pre><code>var add =(n1:number,n2:number):number =&gt; {
+    return n1+n2;
+}
+console.log(add(1,2));//打印4 </code></pre><h2 id="函数中变量得作用域"><a href="#函数中变量得作用域" class="headerlink" title="函数中变量得作用域"></a>函数中变量得作用域</h2><p> 变量得作用域:TypeScript函数划分 函数体内得变量 是封闭得 只在函数体内部起作用</p>
+<p> 什么是全局变量，局部变量？</p>
+<p>  函数体外就是全局变量，函数体内得就是局部变量 当重名得时候内部变量不会改变，内部变量引入不了外部变量</p>
+<pre><code>var app = function():void{
+    var abc:string=&apos;asd&apos;;
+    console.log(abc); //asd
+}
+app();
+console.log(abc);//报错</code></pre><h2 id="引用类型-数组"><a href="#引用类型-数组" class="headerlink" title="引用类型-数组"></a>引用类型-数组</h2><p> 引用类型</p>
+<pre><code>let A ={
+    name:&apos;wang&apos;,
+    age=12,
+    webChrom: &apos;wangxuelong.com&apos;,
+    saysome:function(){
+        console.log(&apos;112233&apos;);
+    }
+}
+console.log(A.name);
+A.saysome();</code></pre><p> 数组 –array String Date RegEXP</p>
+<pre><code>let arr:number[] //数值类型
+let arr1:Array&lt;string&gt; //字符串类型
+let arr2:Array&lt;boolean&gt; //布尔类型</code></pre><p> 字面量赋值法</p>
+<pre><code>let arr1:number[] = [];
+let arr2:number[] = [1,2,3,4,5];
+let arr3:Array&lt;string&gt; = [&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;];
+let arr4:Array&lt;boolean&gt; = [true,false,true];</code></pre><p> 构造函数赋值法</p>
+<pre><code>let arr1:number[] = new Array();
+let arr2:number[] = new Array(1,2,3,4,5);
+let arr3:Array&lt;string&gt; = new Array(&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;);
+let arr4:Array&lt;boolean&gt; = new Array(true,false,true);</code></pre><p> 坑🕳</p>
+<pre><code>let arr5:number[]=[1,2,true]//单一类型 不允许会报错</code></pre><p> 元祖是可以的(不建议使用)</p>
+<pre><code>let arr5:[string,number];
+arr5=[&apos;hello&apos;,10]//正确的方法
+//arr5=[10,&apos;he&apos;]//错误的</code></pre><h2 id="引用类型得字符串"><a href="#引用类型得字符串" class="headerlink" title="引用类型得字符串"></a>引用类型得字符串</h2><p> 基本类型字符串，引用类型字符串</p>
+<pre><code>let a:string = &apos;xxbb&apos;;//基本类型
+let b:String = new String(&apos;xxbb&apos;)//引用类型 String:&apos;xxbb&apos;
+console.log(a.length) //4</code></pre><p>查找字符串indexOf</p>
+<pre><code>let some:string=&apos;abcdefg,higklmn&apos;;
+let find:string=&apos;abcdefg&apos;
+console.log(some.indexOf(find));//0
+console.log(some.lastindexOf(find));//0 找最后一个 出现两次 选最后一次</code></pre><p>截取字符串 substring()</p>
+<pre><code>let some:string=&apos;abcdefg,higklmn&apos;;
+let find:string=&apos;abcdefg&apos;
+console.log(some.substring(8));//higklmn
+console.log(some.substring(8,10));//hi</code></pre><p>替换字符串 replace()</p>
+<pre><code>let some:string=&apos;abcdefg,higklmn&apos;;
+let find:string=&apos;abcdefg&apos;;
+console.log(some.replace(&apos;abcdefg&apos;,&apos;xxbb&apos;));//xxbb,higklmn</code></pre><h2 id="引用类型-日期对象"><a href="#引用类型-日期对象" class="headerlink" title="引用类型-日期对象"></a>引用类型-日期对象</h2><p> 1 不传值</p>
+<pre><code>let d:Date = new Date();
+console.log(d); //不是当前中国时区？ 不知道为什么</code></pre><p> 2 传数字</p>
+<pre><code>let d:Date = new Date(1000);//1970-01-01 00:00:00向前数1000毫秒
+console.log(d);//</code></pre><p> 3 传字符串</p>
+<pre><code>let d:Date = new Date(&apos;1970/01/01 00:00:00&apos;);
+let d1:Date = new Date(&apos;1970-01-01 00:00:00&apos;);
+let d2:Date = new Date(&apos;1970-01-01T00:00:00&apos;);
+console.log(d);//1969-12-31T16:00:00.000Z
+console.log(d1);//1969-12-31T16:00:00.000Z
+console.log(d2);//1969-12-31T16:00:00.000Z
+//这里打印结果 我这TS 时区是不一样的   我也不知道为什么</code></pre><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p> RegExp string</p>
+<p> 构造函数声明法</p>
+<pre><code>let reg:RegExp = new RegExp(&quot;js&quot;)//1.匹配字符串 2.修饰符（可选）
+console.log(reg);// /js/</code></pre><p> 字面量声明 查找字符串text(string)返回TRUE FALSE exec(string)返回 【查找的东西 位置 内容】</p>
+<pre><code>let reg:RegExp = /js/
+let findred:string = &apos;jis is js very good&apos;
+console.log(reg.test(findred))//true</code></pre><h2 id="面向对象编程-类的声明和使用"><a href="#面向对象编程-类的声明和使用" class="headerlink" title="面向对象编程-类的声明和使用"></a>面向对象编程-类的声明和使用</h2><p> 概念</p>
+<p>  类：类是对象具体事务的一个抽象</p>
+<p>  对象：对象时的具体表现</p>
+<pre><code>class findgirl{
+    name:string
+    age:number
+    constructor(name:string,age:number){
+        this.name = name;
+        this.age = age;
+    }
+    sayHello(){
+        console.log(&apos;大马猴&apos;);
+    }
+}
+let xxbb:findgirl =new findgirl(&apos;hxx&apos;,18);
+console.log(xxbb)//findgirl { name: &apos;hxx&apos;, age: 18 }
+xxbb.sayHello()//大马猴</code></pre><h2 id="面向对象编程-修饰符"><a href="#面向对象编程-修饰符" class="headerlink" title="面向对象编程-修饰符"></a>面向对象编程-修饰符</h2><p> public //曝光的 protected //保护的  private //私有的</p>
+<pre><code>class DaMahou{
+    public sex:string 
+    protected name:string
+    private age:number
+    public constructor(sex:string,name:string,age:number){
+        this.name = name 
+        this.age = age
+        this.sex = sex
+    }
+    public sayHello(){
+        console.log(&apos;我叫大马猴&apos;)；
+    }
+    protected sayHxx(){
+        console.log(&apos;hxx&apos;);
+    }
+}
+
+var xxbb:DaMahou = new DaMahou(&apos;男&apos;,&apos;xxbb&apos;,24)
+console.log(DaMahou.sex) //男
+console.log(DaMahou.name) //提示收到保护
+console.log(DaMahou.age) //报错 私有属性
+DaMahou.sayHello()//正常
+DaMahou.sayHxx()//报错</code></pre><p> readonly 只读 不能修改</p>
+<pre><code>class findName{
+    public readonly name:string=&apos;xxbb&apos;
+}
+
+var man:findName = new findName()
+man.name = &apos;hxx&apos;//报错</code></pre><h2 id="面向对象编程-继承和重写"><a href="#面向对象编程-继承和重写" class="headerlink" title="面向对象编程-继承和重写"></a>面向对象编程-继承和重写</h2><p> 继承：允许我们创建一个类（子类），从已有的类（父类）上继承所有的属性和方法，子类可以新建父类中没有的属性和方法。</p>
+<pre><code>class b{
+    console.log(12);
+}
+extends//继承 a 继承于b
+class a extends b {
+    public xing:string =&apos;asd&apos;;
+}</code></pre><h2 id="面向对象编程-接口-就是与后端交互-interface"><a href="#面向对象编程-接口-就是与后端交互-interface" class="headerlink" title="面向对象编程-接口 就是与后端交互 interface"></a>面向对象编程-接口 就是与后端交互 interface</h2><pre><code>interface man{
+    name:string
+    sex:string
+    age:number
+    Dmh?:Boolean
+}
+
+let hxx:man = {
+    name:&apos;hxx&apos;,
+    sex:&apos;nv&apos;,
+    age: &apos;18&apos;
+}
+console.log(hxx)//{ name: &apos;hxx&apos;, sex: &apos;nv&apos;, age: 18 }</code></pre><p> 接口规范</p>
+<pre><code>interface FindDMH{
+    (name:string,sex:string):boolean
+}
+let hxx:FindDMH
+hxx=function (name:string,sex:string):boolean{
+    let flag =name.search(sex)
+    return (flag!=1)
+}
+console.log(hxx(&apos;dmh&apos;,&apos;男&apos;))//true</code></pre><h2 id="面向对象编程-命名空间"><a href="#面向对象编程-命名空间" class="headerlink" title="面向对象编程-命名空间"></a>面向对象编程-命名空间</h2><pre><code>namespace shuaiGe{
+    export class Dehua{
+        public name:string = &apos;刘德华&apos;
+        talk(){
+            console.log(&apos;我是帅哥刘德华&apos;)
+        }
+    }
+}
+
+namespace bajie{
+    export class Dehua{
+        public name:string = &apos;马德华&apos;
+        talk(){
+            console.log(&apos;我是二师兄马德华&apos;)
+        }
+    }
+}
+
+let dehua1:shuaiGe.Dehua   = new shuaiGe.Dehua()
+let dehua2:shuaiGe.Dehua   = new bajie.Dehua()
+dehua1.talk()</code></pre><p>结语：感觉TS 就是 好严谨啊  又get到了一个知识点 </p>
+<p> 网站链接 <a href="https://jspang.com/posts/2018/06/27/typesript.html" target="_blank" rel="noopener">https://jspang.com/posts/2018/06/27/typesript.html</a></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/09/24/mybook5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2019/10/21/mybook6/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Git 命令快速查找
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/09/09/mybook4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">学习前端路线</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '8oWxOXTDnVhLeiRpwCePdFui-gzGzoHsz',
+        app_key: 'U4luMDoTXlQ6DrMjExMEoNcb',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> XueLong Wang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="王雪龙的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/comment">留言</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/AliPayQR.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/WeChanSQ.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

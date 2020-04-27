@@ -1,0 +1,1131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>个人面试笔记实时更新</title>
+    <url>/2018/04/28/mybook1/</url>
+    <content><![CDATA[<a id="more"></a>
+<h1 id="Html-相关"><a href="#Html-相关" class="headerlink" title="Html 相关"></a>Html 相关</h1><h1 id="CSS-相关"><a href="#CSS-相关" class="headerlink" title="CSS 相关"></a>CSS 相关</h1><h1 id="JS-相关"><a href="#JS-相关" class="headerlink" title="JS 相关"></a>JS 相关</h1><h2 id="1-原始类型有哪几种？"><a href="#1-原始类型有哪几种？" class="headerlink" title="1.原始类型有哪几种？"></a>1.原始类型有哪几种？</h2><pre><code>存在着 6 种原始值
+1.boolean
+2.null
+3.undefined
+4.number
+5.string
+6.symbol</code></pre><h2 id="2-0-1-0-2为什么不等于0-3？"><a href="#2-0-1-0-2为什么不等于0-3？" class="headerlink" title="2.0.1+0.2为什么不等于0.3？"></a>2.0.1+0.2为什么不等于0.3？</h2><pre><code>0.1和0.2在转换成二进制后会无限循环，由于标准位数的限制后面多余的位数会被截掉，相加后因浮点数小数位的限制而截断的二进制数字在转换为十进制就会变成0.30000000000000004。</code></pre><h2 id="请说出下面代码的执行顺序"><a href="#请说出下面代码的执行顺序" class="headerlink" title="请说出下面代码的执行顺序"></a>请说出下面代码的执行顺序</h2><pre><code>async function async1() {
+  console.log(1);
+  const result = await async2();
+  console.log(3);
+}
+
+async function async2() {
+  console.log(2);
+}
+
+Promise.resolve().then(() =&gt; {
+  console.log(4);
+});
+
+setTimeout(() =&gt; {
+  console.log(5);
+});
+
+async1();
+console.log(6);
+
+我的回答是[1,2,6,4,3,5] ，这道题目主要考对JS宏任务和微任务的理解程度，首先执行asunc1 打印1
+然后执行async2 打印2 并且返回了一个promise函数 打印6之后打印4 然后async2 执行后打印3  最后打印定时器 打印5
+事件循环中每个宏任务称为一个Tick(标记)，在每个标记的末尾会追加一个微任务队列，一个宏任务执行完后会执行所有的微任务，直到队列清空
+来源：小维FE 
+https://juejin.im/post/5db556376fb9a0207a6ddce7#heading-3</code></pre><h1 id="手写题目相关"><a href="#手写题目相关" class="headerlink" title="手写题目相关"></a>手写题目相关</h1><h2 id="1-手写一下数组去重"><a href="#1-手写一下数组去重" class="headerlink" title="1.手写一下数组去重"></a>1.手写一下数组去重</h2><pre><code>var array=[2,1,3,4,5,3,2,4,5,6,1,2,4,5,6,1,2,3,6,6,1,2,5,2,6,1,45,6];
+function quchong(array){
+    var res=[];
+    for(var i=0;i&lt;array.length;i++){
+        var current =array[i];
+        if(res.indexOf(current)===-1){
+            res.push(current);
+        }
+    }
+    return res;
+}
+console.log(quchong(array));</code></pre><h2 id="2-手写防抖"><a href="#2-手写防抖" class="headerlink" title="2.手写防抖"></a>2.手写防抖</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;防抖debounce&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;button id=&quot;debounce&quot;&gt;防抖&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+    var debounce = document.getElementById(&apos;debounce&apos;);
+    debounce.addEventListener(&apos;click&apos;, newdebounce(SayHi));
+
+    function newdebounce(fn) {
+        let Timer = null;
+        return function () {
+            clearTimeout(Timer)
+            Timer = setTimeout(() =&gt; {
+                fn.call(this, arguments)
+            }, 1000)
+        }
+
+    }
+
+    function SayHi() {
+        console.log(&apos;sayHi 防抖&apos;);
+    }
+&lt;/script&gt;
+
+&lt;/html&gt;</code></pre><h2 id="3-手写节流"><a href="#3-手写节流" class="headerlink" title="3.手写节流"></a>3.手写节流</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;throttle节流&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;button id=&quot;throttle&quot;&gt;
+            节流throttle
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+var throttle = document.getElementById(&apos;throttle&apos;);
+throttle.addEventListener(&apos;click&apos;, newthrottle(SayHI))
+
+function newthrottle(fn) {
+    let State = true;
+    return function () {
+        if (!State) {
+            return;
+        }
+        State = false;
+        let timer = null;
+        timer = setTimeout(() =&gt; {
+            State = true;
+            fn.call(this, arguments);
+        }, 1000)
+    }
+}
+
+function SayHI() {
+    console.log(&apos;节流success&apos;);
+}
+&lt;/script&gt;
+
+&lt;/html&gt;</code></pre><h1 id="HTTP-网络相关"><a href="#HTTP-网络相关" class="headerlink" title="HTTP 网络相关"></a>HTTP 网络相关</h1><h2 id="1-从url地址到最终页面渲染完成-发生了什么呢？"><a href="#1-从url地址到最终页面渲染完成-发生了什么呢？" class="headerlink" title="1.从url地址到最终页面渲染完成 发生了什么呢？"></a>1.从url地址到最终页面渲染完成 发生了什么呢？</h2><pre><code>1.dns解析 将域名解析为IP地址
+    -浏览器DNS缓存
+    -系统DNS缓存
+    -路由器缓存
+    -网络运营商得DNS缓存
+    -递归搜索
+2.TCP三次握手
+    第一次握手 
+        是由浏览器发起的，用来告诉服务器我要发送请求
+    第二次握手
+        是由服务器发起，告诉浏览器我准备接受了，你发吧
+    第三次握手
+        是由浏览器发起得，告诉浏览器我马上发了，准备接受吧
+3.发送请求
+    -请求报文，HTTP协议得通信内容
+4.接受响应
+    -响应报文
+5.渲染页面
+    -遇见HTML标记 调用HTML解析器 解析对应得token标记，构成DOM树
+    -遇见style/link标记 浏览器会调用css解析器，处理并声称cssdom树
+    -遇见script标记 调用javascript解析器 处理script代码（绑定事件，修改dom/css树）
+    -将DOM和CSSOM树合并成一个渲染树
+    -根据渲染树计算布局（布局）
+    -将各个节点颜色绘制到屏幕上（渲染）
+    注意：这几个步骤 不一定按照顺序执行 可能会反复多次执行如果dom和css树被修改了 可能会执行多次
+6.断开连接（TCP四次挥手）
+    第一次挥手
+        由浏览器发起，发送给服务器，我发送完了（请求报文），你准备关闭吧
+    第二次挥手
+        由服务器发起，我东西接受完了（请求报文） 我准备关闭了你也准备把
+    第三次挥手
+        由服务器发起，告诉浏览器我发送完毕，你准备关闭吧，这里指的响应报文
+    第四次挥手
+        由浏览器发起，告诉服务器 我东西发完了 我准备关闭了你也准备吧
+    --先关服务器 在关浏览器    </code></pre><h1 id="ES6相关"><a href="#ES6相关" class="headerlink" title="ES6相关"></a>ES6相关</h1><h2 id="1-什么是ES6"><a href="#1-什么是ES6" class="headerlink" title="1.什么是ES6"></a>1.什么是ES6</h2><pre><code>ES6是新一代js语言标准 新增了一些js原生方法 使js使用更加规范 更加优雅</code></pre><h2 id="2-ES5-ES6有什么区别"><a href="#2-ES5-ES6有什么区别" class="headerlink" title="2.ES5,ES6有什么区别"></a>2.ES5,ES6有什么区别</h2><pre><code>ES2015特指在2015年发布的新一代JS语言标准
+ES6泛指下一代JS语言标准，包含ES2015、ES2016、ES2017、ES2018等
+现阶段在绝大部分场景下，ES2015默认等同ES6。ES5泛指上一代语言标准。ES2015可以理解为ES5和ES6的时间分界线。</code></pre><h2 id="3-了解babel吗-有什么作用"><a href="#3-了解babel吗-有什么作用" class="headerlink" title="3.了解babel吗 有什么作用"></a>3.了解babel吗 有什么作用</h2><pre><code>babel是一个ES6转码器 可以将代码转为ES5代码 以便兼容那些还没支持ES6得平台</code></pre><h2 id="4-let有什么用-有了var-为什么还要使用let"><a href="#4-let有什么用-有了var-为什么还要使用let" class="headerlink" title="4.let有什么用 有了var 为什么还要使用let"></a>4.let有什么用 有了var 为什么还要使用let</h2><pre><code>let 声明的变量拥有自己的块级作用域，且修复了var声明变量带来的变量提升问题。</code></pre><h2 id="5-箭头函数"><a href="#5-箭头函数" class="headerlink" title="5.箭头函数"></a>5.箭头函数</h2><pre><code>箭头函数没有自己得this this总是指向他的上一层this
+箭头函数不能用作构造函数 因为它没有自己的this 无法实例化</code></pre><h2 id="6-双冒号运算符-用来取代-bind-call和apply"><a href="#6-双冒号运算符-用来取代-bind-call和apply" class="headerlink" title="6.双冒号运算符 用来取代 bind call和apply"></a>6.双冒号运算符 用来取代 bind call和apply</h2><p>foo：：bar</p>
+<h2 id="7-symbol是什么"><a href="#7-symbol是什么" class="headerlink" title="7.symbol是什么"></a>7.symbol是什么</h2><pre><code>symbol是ES6引入得第七种原始数据类型 symbol属性不能被for。。。in遍历
+也不是私有属性</code></pre><h2 id="8-set是什么"><a href="#8-set是什么" class="headerlink" title="8.set是什么"></a>8.set是什么</h2><pre><code>set是ES6引入得一种类似Array得新的数据结构 Set实例得成员类似于数组得item成员 区别就是 数组去重   数组中元素不重复</code></pre><h2 id="9-Map是什么"><a href="#9-Map是什么" class="headerlink" title="9.Map是什么"></a>9.Map是什么</h2><pre><code>是一种类似obj得新的数据结构</code></pre><h2 id="10-promise是什么"><a href="#10-promise是什么" class="headerlink" title="10.promise是什么"></a>10.promise是什么</h2><pre><code>promise是ES6引入得一个新的对象 他的主要作用是用来解决Js异步机制例得
+回调地狱 只是封装了异步回调 使得异步回调写的更加优雅 可读性更高
+let promise=new promise((resolve,reject)=&gt;{
+    let promise
+    if(xx){}else{}
+    promise.then(respone=&gt;{
+        xxx
+    }).catch(error=&gt;{
+        xxx
+    })
+})</code></pre><h1 id="Vue-相关"><a href="#Vue-相关" class="headerlink" title="Vue 相关"></a>Vue 相关</h1><h2 id="1-简单得介绍一下Vue？"><a href="#1-简单得介绍一下Vue？" class="headerlink" title="1.简单得介绍一下Vue？"></a>1.简单得介绍一下Vue？</h2><pre><code>vue.js是一个用户创建WEB交互界面得库.
+
+他让你通过简单的操作api创建数据驱动的ui组件.
+
+同时他也是一个声明式，组件式框架.</code></pre><h2 id="2-说一说Vue的生命周期"><a href="#2-说一说Vue的生命周期" class="headerlink" title="2.说一说Vue的生命周期"></a>2.说一说Vue的生命周期</h2><pre><code>beforeCreate、created、
+beforeMount、mounted、
+beforeUpdate、updated、
+beforeDestroy、destroyed
+创建=&gt;挂载=&gt;更新=&gt;销毁
+所以vue的组件也是有生命周期的，四个阶段，八个钩子
+beforeCreate
+    千万不要去修改data数据 最早也要放在created里面去做
+    在实例化初始之后 实例初始化 new vue（）
+    在实例初始化之后，数据观测和暴露了一些有用的实例属性与方法。
+created
+    是一个template编译的过程 结果是解析成了render函数</code></pre><h2 id="3-Vue组件间通信"><a href="#3-Vue组件间通信" class="headerlink" title="3.Vue组件间通信"></a>3.Vue组件间通信</h2><pre><code>组件通信得几种方式
+    子传父 父传子  兄弟组件传递  爷孙组件传递（隔代组件）
+1.props
+    通过一般属性传递 父传子
+    通过函数属性实现子传父
+    缺点：隔代属性比较麻烦
+2.自定义事件函数
+    子组件向父组件通信
+    绑定监听@xxx=&apos;xxx&apos;
+    this.@emit(&apos;xx&apos;,data)    
+3.slot
+    专门实现父子传递得数据标签
+4.vuex
+    专门做状态管理得库（一个大的面试点！！！）
+5.pubsub(消息订阅和发布)
+    我通常使用pubsub.js
+        订阅：pubsub.subscribe(&apos;xxx&apos;,fun(名字,data){})
+        发布：pubsub.publish(&apos;名字&apos;,data)    
+    优点随意传递 随意关系得传递</code></pre><h2 id="4-Vuex是什么？"><a href="#4-Vuex是什么？" class="headerlink" title="4.Vuex是什么？"></a>4.Vuex是什么？</h2><pre><code>Vuex是一个专门为Vue.js应用程序开发的状态管理模式
+
+它采用集中式存储管理应用得所有组件得状态
+
+并以相应的规则保证状态以一种可预测的方式发生变化</code></pre><h2 id="5-Vuex应用场景"><a href="#5-Vuex应用场景" class="headerlink" title="5.Vuex应用场景"></a>5.Vuex应用场景</h2><pre><code>Vuex只能用于单个页面中不同组件得数据流通（组件件数据传递）</code></pre><h2 id="6-Vuex基础概念"><a href="#6-Vuex基础概念" class="headerlink" title="6.Vuex基础概念"></a>6.Vuex基础概念</h2><pre><code>State是什么
+    vuex得单一状态树
+    state是vuex自己维护的一份状态数据，数据得格式需要根据业务去设计
+Getters
+    getters属性主要是对state中数据得一种过滤，属于一种加强属性
+Actions
+    对于store中数据得操作动作在action中提交
+    action和mutation类似 但是action提交时mutation并不直接修改数据    
+Mutations
+    更改VueX得store中得状态得唯一方式是提交mutation 
+    mutation只能执行同步操作
+Module模块化
+    业务逻辑得增多可以使用模块话得方式使代码清晰整洁</code></pre><h2 id="7-vue-router是什么？"><a href="#7-vue-router是什么？" class="headerlink" title="7.vue-router是什么？"></a>7.vue-router是什么？</h2><pre><code>路由就是SPA（单页应用）得路径管理器
+
+路由模块得本质就是建立起url和页面之间得映射关系
+
+传统页面是靠a标签进行跳转 但是vue中不可以这样 因为vue只有一个主
+
+的index.html 所以必须使用vue-router进行管理</code></pre><h2 id="8-Vue-router实现原理"><a href="#8-Vue-router实现原理" class="headerlink" title="8.Vue-router实现原理"></a>8.Vue-router实现原理</h2><pre><code>SPA单一页面应用程序 只有一个完整的页面 他在加载时不会加载整个页面
+知识更新某个指定容器中的内容</code></pre><h2 id="9-Hash模式"><a href="#9-Hash模式" class="headerlink" title="9.Hash模式"></a>9.Hash模式</h2><pre><code>Vue-router默认hash模式 使用url的hash来模拟一个完整的URL 于是当URL改变时 页面不会重新加载 hash（#）是url锚点 代表的是网页中的一个位置  改变#后的部分 只会滚动到相应位置 不会重新加载网页 也就是用来指导浏览器动作的 所以说hash模式通过锚点值得改变 渲染制定dom位置不同得数据</code></pre><h2 id="10-History模式"><a href="#10-History模式" class="headerlink" title="10.History模式"></a>10.History模式</h2><pre><code>由于hash模式会在url中自带# 如果不想要很丑得hash 可以用路由得history模式  只需要在配置路由规则时 加入mode:history 就可以用Api来完成URL跳转而无需重新加载页面</code></pre><h2 id="11-跳转方式"><a href="#11-跳转方式" class="headerlink" title="11.跳转方式"></a>11.跳转方式</h2><pre><code>方式一 直接修改地址
+
+方式二 this.$router.push(&apos;路由地址&apos;)
+
+方式三 &lt;router-link to=&apos;路由地址&apos;&gt;&lt;/router-link&gt;</code></pre><h2 id="12-vue-router-使用方式"><a href="#12-vue-router-使用方式" class="headerlink" title="12.vue-router 使用方式"></a>12.vue-router 使用方式</h2><pre><code>1. 下载
+2. 在main中引入
+3. 安装插件 vue。use
+4. 创建路由对象 并且配置路由规则
+5. 在app.vue中留坑  &lt;router-view&gt;</code></pre><h2 id="13-vue-router如何传递参数"><a href="#13-vue-router如何传递参数" class="headerlink" title="13.vue-router如何传递参数"></a>13.vue-router如何传递参数</h2><pre><code>1.用name传递参数
+2.通过router-link标签中的to传参
+3.利用url传递参数 在配置文件以冒号形式设置参数</code></pre><h2 id="14-vue-router跳转方法"><a href="#14-vue-router跳转方法" class="headerlink" title="14.vue-router跳转方法"></a>14.vue-router跳转方法</h2><pre><code>1. .go跳转到上一次浏览的页面
+2. .replace指定跳转地址
+3. .replace{name}跳转到指定名字下  #不可以退回
+4. .push通过push进行跳转   #可以后退
+5. push（name）同3
+6. 404 是*地址</code></pre><h2 id="15-vue-router导航卫士"><a href="#15-vue-router导航卫士" class="headerlink" title="15.vue-router导航卫士"></a>15.vue-router导航卫士</h2><pre><code>全局守卫 
+1 router.beforeEach全局前置守卫 进入路由之前
+
+2 router.beforResolve全局就解析首位 在beforerouteenter调用之后
+
+3 router.afterEach全局后置钩子 进入路由之后</code></pre><h2 id="16-to-from-next这三个参数"><a href="#16-to-from-next这三个参数" class="headerlink" title="16.to from next这三个参数"></a>16.to from next这三个参数</h2><pre><code> to和from 是将要进入和将要离开的路由对象 路由对象指的是平时通过this.route获取到的路由对象
+
+ next是一个函数 且必须调用 否则不能进入路由（页面空白）
+
+next 进入该路由
+
+next（false） 取消进入 url地址重置为From路由地址
+
+beforeEnter: (to, from, next) =&gt; { 
+
+// 参数用法什么的都一样,调用顺序在全局前置守卫后面，所以不会被全局
+
+守卫覆盖
+
+// ...
+
+}    </code></pre><h2 id="17-路由组件内的守卫："><a href="#17-路由组件内的守卫：" class="headerlink" title="17.路由组件内的守卫："></a>17.路由组件内的守卫：</h2><pre><code>beforeRouteEnter 进入路由前
+
+beforeRouteUpdate (2.2) 路由复用同一个组件时
+
+beforeRouteLeave 离开当前路由时</code></pre><h2 id="18-说一说keep-alive"><a href="#18-说一说keep-alive" class="headerlink" title="18.说一说keep-alive"></a>18.说一说keep-alive</h2><pre><code>是用来缓存组件内部状态 避免重新渲染 是一个抽象组件 他自身不会
+渲染一个Dom元素 也不会出现在父组件链中 
+主要用于保留组件状态或避免重新渲染</code></pre><p>生命周期钩子</p>
+<pre><code>activated和deactivated
+activated在组件第一次渲染时会被调用
+，之后在每次缓存组件被激活时调用。
+deactivated：组件被停用(离开路由)时调用
+使用了keep-alive就不会调用beforeDestroy(组件销毁前钩子)
+和destroyed(组件销毁)，因为组件没被销毁，被缓存起来了。</code></pre><p>新增属性</p>
+<pre><code>include：匹配的 路由 组件 会被缓存
+exclude 匹配的 路由 组件 不会被缓存
+include和exclude支持三种方式来有条件的缓存路由：
+采用逗号分隔的字符串形式，正则形式，数组形式。
+当你缓存了组件之后 再次进入beforeCreate created beforemounted
+
+mounted  如果想使用 使用activated钩子和destoyed钩子使用</code></pre><h2 id="19-为什么Vue被称为渐进式框架"><a href="#19-为什么Vue被称为渐进式框架" class="headerlink" title="19.为什么Vue被称为渐进式框架"></a>19.为什么Vue被称为渐进式框架</h2><pre><code>使用渐进式框架得代价很小，从而使现有项目利于迁移 vue配合其他库效果很好 成本低 所以被称为缉渐进式框架</code></pre><h2 id="20-你用哪个指令遍历对象"><a href="#20-你用哪个指令遍历对象" class="headerlink" title="20.你用哪个指令遍历对象"></a>20.你用哪个指令遍历对象</h2><pre><code>v-for 例子：
+&lt;Template&gt;
+&lt;div id=&quot;app&quot;&gt;
+    &lt;ul&gt;
+        &lt;li v-for=&quot;(value, key) in eg&quot;&gt;{{ key }} = {{ value }}&lt;/li&gt;    
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/Template&gt;
+&lt;script&gt;
+new Vue({
+  el: &apos;#app&apos;,
+  data: {
+    eg: {
+      name: &apos;hxx&apos;,
+      age: 21,
+    }
+  }
+});
+&lt;/script&gt;
+输出:
+    name= &apos;hxx&apos;,
+    age = 21,</code></pre><h2 id="21-v-show-指令的用途是什么？"><a href="#21-v-show-指令的用途是什么？" class="headerlink" title="21.v-show 指令的用途是什么？"></a>21.v-show 指令的用途是什么？</h2><pre><code>v-show 指令开启/关闭元素。在下面的代码中，仅当 show 属性为 true 时，才会显示
+&lt;Box v-show=”show”&gt; </code></pre><h2 id="22-v-show-与-v-if-指令区别？"><a href="#22-v-show-与-v-if-指令区别？" class="headerlink" title="22.v-show 与 v-if 指令区别？"></a>22.v-show 与 v-if 指令区别？</h2><pre><code>v-show 和 v-if 都用于显示元素，而后者提供了条件渲染的真正实现。 v-show 只需切换 CSS 的 display 属性即可显示或隐藏元素，而 v-if 指令可创建或销毁组件。每次显示状态更改时，代价通常会更大。
+另一方面，v-show 成本较低，因为它仅切换元素的CSS显示属性。所以如果必须经常切换元素，则 v-show 会提供比 v-if 更好，更优化的结果。
+就加载元素的初始渲染成本而言，v-if 不会渲染最初隐藏的元素的节点，而 v-show 会渲染其 CSS display 属性被设置为 none 的元素。</code></pre><h2 id="23-如何动态地在元素上切换-CSS-类？"><a href="#23-如何动态地在元素上切换-CSS-类？" class="headerlink" title="23.如何动态地在元素上切换 CSS 类？"></a>23.如何动态地在元素上切换 CSS 类？</h2><pre><code>:class=”{ Style : show }
+        //css名称//状态</code></pre><h2 id="24-什么是插槽（slot）？"><a href="#24-什么是插槽（slot）？" class="headerlink" title="24. 什么是插槽（slot）？"></a>24. 什么是插槽（slot）？</h2><pre><code>插槽允许你定义可以封装和接受子 DOM 元素的元素。组件模板中的 &lt;slot&gt; &lt;/slot&gt;
+元素作为通过组件标签捕获的所有DOM元素的出口。</code></pre><h1 id="React-相关"><a href="#React-相关" class="headerlink" title="React 相关"></a>React 相关</h1><h1 id="性能优化相关"><a href="#性能优化相关" class="headerlink" title="性能优化相关"></a>性能优化相关</h1><h1 id="node-数据库相关"><a href="#node-数据库相关" class="headerlink" title="node 数据库相关"></a>node 数据库相关</h1>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目常用JS方法封装</title>
+    <url>/2019/12/10/mybook9/</url>
+    <content><![CDATA[<h1 id="常用JS方法封装"><a href="#常用JS方法封装" class="headerlink" title="常用JS方法封装"></a>常用JS方法封装</h1><h2 id="判断值类型的方法"><a href="#判断值类型的方法" class="headerlink" title="判断值类型的方法"></a>判断值类型的方法</h2><pre><code>type = parm =&gt; {
+    return Object.prototype.toString.call(parm).match(/\[([^]*)\]/)[1].split(&quot; &quot;)[1]
+}
+使用方法： type(你想检测的值)</code></pre><h2 id="数组排序UP升"><a href="#数组排序UP升" class="headerlink" title="数组排序UP升"></a>数组排序UP升</h2><pre><code>升序：
+    ArraySortingUp = arr =&gt; {
+    for (let i = 0; i &lt; arr.length - 1; i++) {
+        for (let j = 0; j &lt; arr.length - 1 - i; j++) {
+        if (arr[j] &gt; arr[j + 1]) {
+            let temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
+            }
+        }
+    }
+    return arr;
+}
+使用方法：ArraySortingUp(你想排序的数组)</code></pre><h2 id="数组排序DOWN降"><a href="#数组排序DOWN降" class="headerlink" title="数组排序DOWN降"></a>数组排序DOWN降</h2><pre><code>降序：
+    ArraySortingDown = arr =&gt; {
+    for (let i = 0; i &lt; arr.length - 1; i++) {
+        for (let j = 0; j &lt; arr.length - 1 - i; j++) {
+        if (arr[j] &lt; arr[j + 1]) {
+            let temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
+            }
+        }
+    }
+        return arr;
+}
+使用方法：ArraySortingDown(你想排序的数组)</code></pre><h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><pre><code>ArrayDeleteDuplicates = arr =&gt; {
+let newArr = [];
+let m = {};
+for (let i = 0; i &lt; arr.length; i++) {
+        let n = arr[i];
+        if (m[n]) {
+        } else {
+            newArr.push(arr[i]);
+            m[n] = true;
+        }
+    }
+        return newArr;
+}
+使用方法：ArrayDeleteDuplicates(你想去重的数组)</code></pre><h2 id="统计数组中各个元素出现的次数"><a href="#统计数组中各个元素出现的次数" class="headerlink" title="统计数组中各个元素出现的次数"></a>统计数组中各个元素出现的次数</h2><pre><code>staArrNum = arr =&gt; {
+let obj = {};
+for (let i = 0; i &lt; arr.length; i++) {
+        let m = arr[i];
+        if (obj.hasOwnProperty(m)) {
+            obj[m] += 1;
+        } else {
+        obj[m] = 1;
+        }
+    }
+        return obj;
+}
+使用方法：staArrNum(统计数组)</code></pre><h2 id="时间戳转化成YMD格式"><a href="#时间戳转化成YMD格式" class="headerlink" title="时间戳转化成YMD格式"></a>时间戳转化成YMD格式</h2><pre><code>let date = Date.parse(new Date()) //  获取当前时间戳(毫秒)
+
+    dateFormat = (timestamp, formats) =&gt; {
+    // formats格式包括
+    // 1. Y-m-d
+    // 2. Y-m-d H:i:s
+    // 3. Y年m月d日
+    // 4. Y年m月d日 H时i分
+    formats = formats || &apos;Y-m-d&apos;;
+    let zero = function (value) {
+        if (value &lt; 10) {
+        return &apos;0&apos; + value;
+        }
+        return value;
+    };
+    let myDate = timestamp ? new Date(timestamp) : new Date();
+    let year = myDate.getFullYear();
+    let month = zero(myDate.getMonth() + 1);
+    let day = zero(myDate.getDate());
+    let hour = zero(myDate.getHours());
+    let minite = zero(myDate.getMinutes());
+    let second = zero(myDate.getSeconds());
+
+return formats.replace(/Y|m|d|H|i|s/ig, function (matches) {
+        return ({
+        Y: year,
+        m: month,
+        d: day,
+        H: hour,
+        i: minite,
+        s: second
+        })[matches];
+    });
+};
+
+    console.log(dateFormat(date,&apos;Y-m-d H:i:s&apos;));
+使用方法：dateFormat(时间戳,时间格式)</code></pre><h2 id="存储-sessionStorage"><a href="#存储-sessionStorage" class="headerlink" title="存储 sessionStorage"></a>存储 sessionStorage</h2><pre><code>setItem = (name, content) =&gt; {
+if (!name) return;
+if (typeof content !== &apos;string&apos;) {
+    content = JSON.stringify(content);
+}
+    window.sessionStorage.setItem(name, content);
+};
+使用方法：setItem(名字,内容)</code></pre><h2 id="获取-sessionStorage"><a href="#获取-sessionStorage" class="headerlink" title="获取 sessionStorage"></a>获取 sessionStorage</h2><pre><code>getItem = name =&gt; {
+    if (!name) return;
+    return window.sessionStorage.getItem(name);
+};
+使用方法：getItem(名字)</code></pre><h2 id="删除-sessionStorage"><a href="#删除-sessionStorage" class="headerlink" title="删除 sessionStorage"></a>删除 sessionStorage</h2><pre><code>removeItem = name =&gt; {
+    if (!name) return;
+    window.sessionStorage.removeItem(name);
+};
+使用方法：removeItem(名字)</code></pre><h2 id="去除内容中的空格"><a href="#去除内容中的空格" class="headerlink" title="去除内容中的空格"></a>去除内容中的空格</h2><pre><code> deblank = str =&gt; {
+    str = str.replace(/\s*/g, &apos;&apos;);
+    return str;
+};
+使用方法：deblank(字符串文本)</code></pre><h2 id="文件导出"><a href="#文件导出" class="headerlink" title="文件导出"></a>文件导出</h2><pre><code>checkoutFile = (fileName, response) =&gt; {
+    let blob = new Blob([response], { type: &apos;application/vnd.ms-excel&apos; });
+    let objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement(&apos;a&apos;);
+    a.setAttribute(&apos;href&apos;, objectUrl);
+    a.setAttribute(&apos;download&apos;, fileName);
+    a.click();
+    URL.revokeObjectURL(objectUrl);
+};
+使用方法：checkoutFile(文件名,文件网址)</code></pre><h2 id="取限定范围内的随机数"><a href="#取限定范围内的随机数" class="headerlink" title="取限定范围内的随机数"></a>取限定范围内的随机数</h2><pre><code>function getRandom(integer, size) {
+        let arr = [];
+        function count() {
+            if (arr.length &lt; size) {
+                let n = Math.round(Math.random() * integer);
+                if(!arr.includes(n)) {
+                    arr.push(n)
+                }
+                count()
+            }
+        }
+        count()
+        return arr
+    }
+使用方法：getRandom(100, 10)  // 随机取出0-100以内10位数字</code></pre><h2 id="字符串加密方法"><a href="#字符串加密方法" class="headerlink" title="字符串加密方法"></a>字符串加密方法</h2><pre><code>function compileStr (code) { // 对字符串进行加密 
+                var c = String.fromCharCode(code.charCodeAt(0) + code.length);  
+                for(var i = 1; i &lt; code.length; i++){        
+                    c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));  
+                }     
+                return escape(c);
+}
+使用方法：compileStr(需要加密的字符串)</code></pre><h2 id="字符串解密方法"><a href="#字符串解密方法" class="headerlink" title="字符串解密方法"></a>字符串解密方法</h2><pre><code>function uncompileStr (code) { // 字符串进行解密 
+            code = unescape(code);        
+            var c = String.fromCharCode(code.charCodeAt(0)-code.length);        
+            for(var i = 1; i &lt; code.length; i++){        
+                c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1));        
+            }        
+            return c;
+    }
+使用方法：uncompileStr(需要解秘的字符串);</code></pre>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人网站部署教程</title>
+    <url>/2019/12/17/mybook999/</url>
+    <content><![CDATA[<h1 id="使用-域名-hexo-coding-搭建个人博客"><a href="#使用-域名-hexo-coding-搭建个人博客" class="headerlink" title="使用 域名+hexo+coding 搭建个人博客"></a>使用 域名+hexo+coding 搭建个人博客</h1><hr>
+<h2 id="一，为什么选择codingPage？"><a href="#一，为什么选择codingPage？" class="headerlink" title="一，为什么选择codingPage？"></a>一，为什么选择codingPage？</h2><p>1.首先选择coding 是为了访问速度变快，因为GitHub的服务器大陆访问较慢，所以这里才推荐使用coding</p>
+<h2 id="二，域名购买"><a href="#二，域名购买" class="headerlink" title="二，域名购买"></a>二，域名购买</h2><ol>
+<li>首先贴出域名购买网站 <a href="https://wanwang.aliyun.com/domain?source=5176.11533457&userCode=jh2f4grw" target="_blank" rel="noopener">阿里域名购买网站</a> 点击进入  然后按以下步骤就可以购买了<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun1.png" alt=""><br>·加入清单立即购买<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun2.png" alt=""><br>·推荐直接选个云解析套餐 因为它可以把你得域名解析以便使用<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun3.png" alt=""><br>·付款<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun4.png" alt=""><br>云解析设置（必须解析才能使用）<br><a href="https://help.aliyun.com/document_detail/29716.html?source=5176.11533457&userCode=jh2f4grw" target="_blank" rel="noopener">云解析设置教程</a></li>
+</ol>
+<hr>
+<h2 id="三，开始搭建博客-详细向"><a href="#三，开始搭建博客-详细向" class="headerlink" title="三，开始搭建博客(详细向)"></a>三，开始搭建博客(详细向)</h2><ol>
+<li><p>下载node <a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node</a> 点击进入 按照你得系统位数 进行傻瓜式安装</p>
+</li>
+<li><p>下载git <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> 点击进入 同上傻瓜式安装</p>
+</li>
+<li><p>安装hexo    </p>
+<pre><code>npm install hexo-cli -g</code></pre></li>
+<li><p>注册coding 账号 <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun5.png" alt=""></p>
+</li>
+</ol>
+<p>五人以下免费 咱们是博客 就一个人😂</p>
+<h2 id="四，初始化HEXO-项目-（正题"><a href="#四，初始化HEXO-项目-（正题" class="headerlink" title="四，初始化HEXO 项目 （正题"></a>四，初始化HEXO 项目 （正题</h2><ol>
+<li><p>构建hexo 项目    </p>
+<pre><code>hexo init &lt;你想要的文件夹名字&gt;  等待时间较长 请耐心等待。。。
+cd 你文件夹名字
+hexo s 启动项目 </code></pre><p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun6.png" alt=""></p>
+</li>
+<li><p>安装 hexo 主题   <a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo</a></p>
+<pre><code>cd ./themes/
+ git clone 你想要的主题地址</code></pre><p>里面有很多主题 自己选择一个安装 文档很齐全 这里就不细讲了 相应的主题都会有解释文档这里我就不抢大佬的解释了<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun7.png" alt=""><br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun13.png" alt=""></p>
+</li>
+<li><p>绑定coding 和 文件结构</p>
+<p> 热更新      </p>
+<pre><code>npm install hexo-browsersync --save</code></pre><p> 装git</p>
+<pre><code>npm install hexo-deployer-git --save</code></pre><p> coding创建项目</p>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun8.png" alt=""></p>
+</li>
+</ol>
+<p>打包 使用命令行推送已存在的仓库</p>
+<pre><code>hexo g 
+cd public</code></pre><p>绑定仓库</p>
+<pre><code>git remote add origin https://e.coding.net/xxx/xxx.git你自己的地址 不要抄我的
+然后上传代码到仓库 = = 命令自行打  我都是用vscode自动上传</code></pre><p>绑定CodingPage</p>
+<p> <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun9.png" alt=""><br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun10.png" alt=""><br> 将阿里云的域名指向你得coding分配页面<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun12.png" alt=""><br> 然后访问你绑定的域名就能看见你自己的博客了<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybookimg/yun11.png" alt=""></p>
+<h1 id="中间可能会有实名认证的过程-请认真等待就好了"><a href="#中间可能会有实名认证的过程-请认真等待就好了" class="headerlink" title="中间可能会有实名认证的过程 请认真等待就好了"></a>中间可能会有实名认证的过程 请认真等待就好了</h1><h1 id="如果这个文章帮助了你-请点个👍"><a href="#如果这个文章帮助了你-请点个👍" class="headerlink" title="如果这个文章帮助了你 请点个👍"></a>如果这个文章帮助了你 请点个👍</h1><h1 id="可以在评论区打上你的博客让我们互相加个友链啊😘"><a href="#可以在评论区打上你的博客让我们互相加个友链啊😘" class="headerlink" title="可以在评论区打上你的博客让我们互相加个友链啊😘"></a>可以在评论区打上你的博客让我们互相加个友链啊😘</h1>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>探究重要意义网站站灰色得实现效果</title>
+    <url>/2019/12/13/mybook99/</url>
+    <content><![CDATA[<h1 id="探究重要意义网站站灰色得实现效果"><a href="#探究重要意义网站站灰色得实现效果" class="headerlink" title="探究重要意义网站站灰色得实现效果"></a>探究重要意义网站站灰色得实现效果</h1><p>今天是国家公祭日 铭记国耻！</p>
+<p>实现效果<br>    在 网 页 得body 元素插入这两行代码<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook99.png" alt=""></p>
+<pre><code>-webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */ 
+
+filter: grayscale(100%);</code></pre><p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/BLACKCOMPONENT.png" alt=""></p>
+<p>这样就能实现网页灰白得效果了</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>console得神奇操作</title>
+    <url>/2019/12/02/mybook8/</url>
+    <content><![CDATA[<h1 id="console得各种操作"><a href="#console得各种操作" class="headerlink" title="console得各种操作"></a>console得各种操作</h1><p>在我们的日常开发中，使用最频繁的莫过于使用console.log 我知道得一些操作在这里写一下</p>
+<p>1.console.log()我们经常会使用console.log来打印出变量或者对象</p>
+<p>2.console.warn()你可以完全使用console.warn来代替console.log方法 左侧会有一个警告图标 类似于图片这种<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/_20191202133919.png" alt=""></p>
+<p>3.console.table() 是可以用来可视化的方式来进行打印</p>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/20191202132913.png" alt=""></p>
+<p>4.console.count() 可以把他看做一个计数器然后进行打印</p>
+<p>5.console.time() &amp; console.timeEnd() 这两个方法一般配合使用，是JavaScript中用于跟踪程序执行时间的专用函数  可以做测试代码执行时间</p>
+<p>6.console.profile() 在火狐浏览器中可以更精准的打印每一个步骤执行的时间</p>
+<p>7.const</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一段有趣的可以修改DOM的代码</title>
+    <url>/2019/11/21/mybook7/</url>
+    <content><![CDATA[<h1 id="一段有趣的可以修改DOM的代码😊"><a href="#一段有趣的可以修改DOM的代码😊" class="headerlink" title="一段有趣的可以修改DOM的代码😊"></a>一段有趣的可以修改DOM的代码😊</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">仅仅个人记录</span><br></pre></td></tr></table></figure>
+<p>代码一：这段代码很神奇可以做到不用看html内容直接修改DOM 算是一个有趣的API 记录一下</p>
+<pre><code>document.designMode =&apos;on&apos;</code></pre><p>代码二：通过使用此模块，只需将鼠标悬停在浏览器中，即可快速查看DOM元素的属性。基本上它是一个即时检查器。把这段代码输入到控制台按回车就可以看出效果了</p>
+<pre><code>(function SpyOn() {
+
+const _id = &apos;spyon-container&apos;,
+        _posBuffer = 3;
+
+function init() {
+    document.body.addEventListener(&apos;mousemove&apos;, glide);
+    document.body.addEventListener(&apos;mouseover&apos;, show);
+    document.body.addEventListener(&apos;mouseleave&apos;, hide);
+}
+
+function hide(e) {
+    document.getElementById(_id).style.display = &apos;none&apos;;
+}
+
+function show(e) {
+    const spyContainer = document.getElementById(_id);
+    if (!spyContainer) {
+    create();
+    return;
+    }
+    if (spyContainer.style.display !== &apos;block&apos;) {
+    spyContainer.style.display = &apos;block&apos;;
+    }
+}
+
+function glide(e) {
+    const spyContainer = document.getElementById(_id);
+    if (!spyContainer) {
+    create();
+    return;
+    }
+    const left = e.clientX + getScrollPos().left + _posBuffer;
+    const top = e.clientY + getScrollPos().top + _posBuffer;
+    spyContainer.innerHTML = showAttributes(e.target);
+    if (left + spyContainer.offsetWidth &gt; window.innerWidth) {
+    spyContainer.style.left = left - spyContainer.offsetWidth + &apos;px&apos;;
+    } else {
+    spyContainer.style.left = left + &apos;px&apos;;
+    }
+    spyContainer.style.top = top + &apos;px&apos;;
+}
+
+function getScrollPos() {
+    const ieEdge = document.all ? false : true;
+    if (!ieEdge) {
+    return {
+        left : document.body.scrollLeft,
+        top : document.body.scrollTop
+    };
+    } else {
+    return {
+        left : document.documentElement.scrollLeft,
+        top : document.documentElement.scrollTop
+    };
+    }
+}
+
+function showAttributes(el) {
+    const nodeName = `&lt;span style=&quot;font-weight:bold;&quot;&gt;${el.nodeName.toLowerCase()}&lt;/span&gt;&lt;br/&gt;`;
+    const attrArr = Array.from(el.attributes);
+    const attributes = attrArr.reduce((attrs, attr) =&gt; {
+    attrs += `&lt;span style=&quot;color:#ffffcc;&quot;&gt;${attr.nodeName}&lt;/span&gt;=&quot;${attr.nodeValue}&quot;&lt;br/&gt;`;
+    return attrs;
+    }, &apos;&apos;);
+    return nodeName + attributes;
+}
+
+function create() {
+    const div = document.createElement(&apos;div&apos;);
+    div.id = _id;
+    div.setAttribute(&apos;style&apos;, `
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #444;
+    z-index: 100000;
+    font-size: 12px;
+    border-radius: 5px;
+    line-height: 20px;
+    max-width: 45%;
+    `
+    );
+    document.body.appendChild(div);
+}
+
+init();
+
+})();</code></pre><p>链接：<a href="https://juejin.im/post/5dc9276a5188251d47166dcc" target="_blank" rel="noopener">https://juejin.im/post/5dc9276a5188251d47166dcc</a> 来源：掘金</p>
+]]></content>
+      <categories>
+        <category>趣味</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 命令快速查找</title>
+    <url>/2019/10/21/mybook6/</url>
+    <content><![CDATA[<h1 id="Git-命令快速查找"><a href="#Git-命令快速查找" class="headerlink" title="Git 命令快速查找"></a>Git 命令快速查找</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">仅仅个人经常使用的git备忘，如有不对请指出。</span><br></pre></td></tr></table></figure>
+<h2 id="配置全局用户Name和E-mail"><a href="#配置全局用户Name和E-mail" class="headerlink" title="配置全局用户Name和E-mail"></a>配置全局用户Name和E-mail</h2><pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;email@example.com&quot;</code></pre><h2 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h2><pre><code>git init</code></pre><h2 id="添加文件到Git仓库"><a href="#添加文件到Git仓库" class="headerlink" title="添加文件到Git仓库"></a>添加文件到Git仓库</h2><pre><code>git add &lt;file&gt;</code></pre><h2 id="关联Github远程库"><a href="#关联Github远程库" class="headerlink" title="关联Github远程库"></a>关联Github远程库</h2><pre><code>git remote add github git@github.com.git</code></pre><h2 id="提交添加的文件到Git仓库"><a href="#提交添加的文件到Git仓库" class="headerlink" title="提交添加的文件到Git仓库"></a>提交添加的文件到Git仓库</h2><pre><code>git commit
+git commit -m &quot;提交说明&quot;</code></pre><h2 id="查看仓库当前的状态"><a href="#查看仓库当前的状态" class="headerlink" title="查看仓库当前的状态"></a>查看仓库当前的状态</h2><pre><code>git status</code></pre><h2 id="查看历史提交记录"><a href="#查看历史提交记录" class="headerlink" title="查看历史提交记录"></a>查看历史提交记录</h2><pre><code>git log
+
+git log --pretty=oneline</code></pre><h2 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h2><pre><code>git reset --hard HEAD^</code></pre><h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><h3 id="列出所有本地分支机构"><a href="#列出所有本地分支机构" class="headerlink" title="列出所有本地分支机构"></a>列出所有本地分支机构</h3><pre><code>git branch</code></pre><h3 id="列出远程和本地分支"><a href="#列出远程和本地分支" class="headerlink" title="列出远程和本地分支"></a>列出远程和本地分支</h3><pre><code>git branch -a</code></pre><h3 id="创建一个本地分支并切换到该分支。"><a href="#创建一个本地分支并切换到该分支。" class="headerlink" title="创建一个本地分支并切换到该分支。"></a>创建一个本地分支并切换到该分支。</h3><pre><code>git checkout -b branch_name</code></pre><h3 id="切换到现有分支。"><a href="#切换到现有分支。" class="headerlink" title="切换到现有分支。"></a>切换到现有分支。</h3><pre><code>git checkout branch_name</code></pre><h3 id="将分支推送到远程。"><a href="#将分支推送到远程。" class="headerlink" title="将分支推送到远程。"></a>将分支推送到远程。</h3><pre><code>git push origin branch_name</code></pre><h3 id="重命名当前分支。"><a href="#重命名当前分支。" class="headerlink" title="重命名当前分支。"></a>重命名当前分支。</h3><pre><code>git branch -m new_name</code></pre><h3 id="删除本地分支。"><a href="#删除本地分支。" class="headerlink" title="删除本地分支。"></a>删除本地分支。</h3><pre><code>git branch -d branch_name</code></pre><h3 id="删除远程分支。"><a href="#删除远程分支。" class="headerlink" title="删除远程分支。"></a>删除远程分支。</h3><pre><code>git push origin :branch_name</code></pre><h2 id="日志操作"><a href="#日志操作" class="headerlink" title="日志操作"></a>日志操作</h2><h3 id="单行显示提交历史记录。"><a href="#单行显示提交历史记录。" class="headerlink" title="单行显示提交历史记录。"></a>单行显示提交历史记录。</h3><pre><code>git log --oneline</code></pre><h3 id="显示最近N次提交的提交历史记录。"><a href="#显示最近N次提交的提交历史记录。" class="headerlink" title="显示最近N次提交的提交历史记录。"></a>显示最近N次提交的提交历史记录。</h3><pre><code>git log -2</code></pre><h3 id="用diff显示最近N次提交的提交历史记录。"><a href="#用diff显示最近N次提交的提交历史记录。" class="headerlink" title="用diff显示最近N次提交的提交历史记录。"></a>用diff显示最近N次提交的提交历史记录。</h3><pre><code>git log -p -2</code></pre><h3 id="在工作树中显示所有本地文件更改"><a href="#在工作树中显示所有本地文件更改" class="headerlink" title="在工作树中显示所有本地文件更改"></a>在工作树中显示所有本地文件更改</h3><pre><code>git diff</code></pre><h3 id="显示对文件所做的更改"><a href="#显示对文件所做的更改" class="headerlink" title="显示对文件所做的更改"></a>显示对文件所做的更改</h3><pre><code>git diff myfile</code></pre><h3 id="显示谁更改了文件的内容和时间"><a href="#显示谁更改了文件的内容和时间" class="headerlink" title="显示谁更改了文件的内容和时间"></a>显示谁更改了文件的内容和时间</h3><pre><code>git blame myfile</code></pre><h3 id="显示远程分支及其到本地的映射"><a href="#显示远程分支及其到本地的映射" class="headerlink" title="显示远程分支及其到本地的映射"></a>显示远程分支及其到本地的映射</h3><pre><code>git remote show origin</code></pre><h2 id="清理操作"><a href="#清理操作" class="headerlink" title="清理操作"></a>清理操作</h2><h3 id="删除所有未跟踪的文件"><a href="#删除所有未跟踪的文件" class="headerlink" title="删除所有未跟踪的文件"></a>删除所有未跟踪的文件</h3><pre><code>git clean -f</code></pre><h3 id="删除所有未跟踪的文件和目录"><a href="#删除所有未跟踪的文件和目录" class="headerlink" title="删除所有未跟踪的文件和目录"></a>删除所有未跟踪的文件和目录</h3><pre><code>git clean -df</code></pre><h3 id="撤消对所有文件的本地修改"><a href="#撤消对所有文件的本地修改" class="headerlink" title="撤消对所有文件的本地修改"></a>撤消对所有文件的本地修改</h3><pre><code>git checkout -- .</code></pre><h3 id="取消暂存文件"><a href="#取消暂存文件" class="headerlink" title="取消暂存文件"></a>取消暂存文件</h3><pre><code>git reset HEAD myfile</code></pre><h2 id="标签操作"><a href="#标签操作" class="headerlink" title="标签操作"></a>标签操作</h2><h3 id="列出所有标签"><a href="#列出所有标签" class="headerlink" title="列出所有标签"></a>列出所有标签</h3><pre><code>git tag</code></pre><h3 id="创建一个新标签"><a href="#创建一个新标签" class="headerlink" title="创建一个新标签"></a>创建一个新标签</h3><pre><code>git tag -a tag_name -m &quot;tag message&quot;</code></pre><h3 id="将所有标签推送到远程仓库"><a href="#将所有标签推送到远程仓库" class="headerlink" title="将所有标签推送到远程仓库"></a>将所有标签推送到远程仓库</h3><pre><code>git push --tags</code></pre>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习 TypeScript 笔记</title>
+    <url>/2019/09/24/mybook5/</url>
+    <content><![CDATA[<h1 id="学习-TypeScript-笔记"><a href="#学习-TypeScript-笔记" class="headerlink" title="学习 TypeScript 笔记"></a>学习 TypeScript 笔记</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">仅仅个人用来做笔记，如有不对请指出。</span><br><span class="line">我是看的技术胖的视频，然后自己总结的笔记，想去看视频的同学，请去 </span><br><span class="line">https:&#x2F;&#x2F;jspang.com</span><br></pre></td></tr></table></figure>
+<h2 id="初识TypeScript"><a href="#初识TypeScript" class="headerlink" title="初识TypeScript"></a>初识TypeScript</h2><p> TypeScript是JavaScript 的超集 </p>
+<p> 适合用于大型应用 或者多人合作</p>
+<p> TypeScript 还是会像 less sass 一样 会在最后编译成JavaScript 和css</p>
+<p> 跨平台 且开源  注：js一定要学懂在看</p>
+<p> js库 TS 也可以使用</p>
+<p> TypeScript 提供了一些 类 接口 模块  利于组件化开发</p>
+<p> Vue Ng React 推荐使用TypeScript</p>
+<h2 id="开发环境-安装"><a href="#开发环境-安装" class="headerlink" title="开发环境 安装"></a>开发环境 安装</h2><p> <a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a> 先安装Node 可以安装最新版 具体百度</p>
+<p> npm install typeScript -g 安装TS  </p>
+<p> tsc –version 查看版本如果出来说明安装成功 </p>
+<p> npm init -y -y表示默认</p>
+<p> tsc –init 会生成一个tsconfig.JSON  是用来编译成js文件 的一个文件 eg：有时运行不好使 请删除这个重新下载</p>
+<p> npm install @types/node –dev-save 解决模块生名文件问题</p>
+<p> 然后就可以写文件了</p>
+<pre><code>var a:string =&quot;Hello TS&quot;;</code></pre><p>右键编译 转换成js 然后使用 node 文件名.js 出现你打的文字就说明成功</p>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><p> javascript 是弱类型语言 TypeScript是强类型语言 TypeScript有很多类型</p>
+<h3 id="1-undefined类型、"><a href="#1-undefined类型、" class="headerlink" title="1.undefined类型、"></a>1.undefined类型、</h3><p> 没赋值就是undefined</p>
+<h3 id="2-number类型"><a href="#2-number类型" class="headerlink" title="2.number类型"></a>2.number类型</h3><p> 不仅可以设置整数类型 也可以设置小数类型<br> NAN 全称 Not a Number</p>
+<h3 id="3-string类型"><a href="#3-string类型" class="headerlink" title="3.string类型"></a>3.string类型</h3><p> 单引号 双引号都是string类型</p>
+<h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h3><p> true false 只有这两个值 没有0 1</p>
+<h3 id="enum类型枚举类型"><a href="#enum类型枚举类型" class="headerlink" title="enum类型枚举类型"></a>enum类型枚举类型</h3><p> eg：人的类型：男 女 中(:技术胖日常开车<br> eg： enum REN(通常用大写声明) </p>
+<pre><code>enum REN(nan,nv,yao));
+console.log(REN.yao);//打印索引下标
+enum RENN(nan=&apos;男人&apos;.nv=&apos;女&apos;);
+console.log(RENN.nan);//打印男人</code></pre><h3 id="any-类型"><a href="#any-类型" class="headerlink" title="any 类型"></a>any 类型</h3><p> eg：就是任何类型啥都行 （我感觉就是返回js类）</p>
+<pre><code>var t:any =10 
+t=true;
+console.log(t);打印true</code></pre><h3 id="void-空类型"><a href="#void-空类型" class="headerlink" title="void 空类型"></a>void 空类型</h3><h3 id="Array-数组类型"><a href="#Array-数组类型" class="headerlink" title="Array 数组类型"></a>Array 数组类型</h3><h3 id="Tuple-元祖类型"><a href="#Tuple-元祖类型" class="headerlink" title="Tuple 元祖类型"></a>Tuple 元祖类型</h3><h3 id="Null-空类型"><a href="#Null-空类型" class="headerlink" title="Null 空类型"></a>Null 空类型</h3><h2 id="TypeScript的函数"><a href="#TypeScript的函数" class="headerlink" title="TypeScript的函数"></a>TypeScript的函数</h2><p> eg:代码的复用 </p>
+<pre><code>function searchAV(AV:string):string{
+
+    return &apos;search your AV&apos; +AV;
+}
+var AV:string=&apos;010294590&apos;;
+var result:string =searchAV(AV)
+console.log(result);</code></pre><p> eg: ?是可以不传的参数</p>
+<pre><code>function searchAV(AV:string,AVMING?:string):string{
+    if(AVMING===undefind){
+        return &apos;search your AVMING&apos; +AV+AVMING;
+    }else{
+        return &apos;search your AV&apos; +AV;
+    }
+
+
+}
+var AV:string=&apos;010294590&apos;;
+var result:string =searchAV(AV)
+console.log(result);</code></pre><h2 id="三种函数得定义方式-完全支持ES-6-7-8-…"><a href="#三种函数得定义方式-完全支持ES-6-7-8-…" class="headerlink" title="三种函数得定义方式(完全支持ES 6,7,8,…)"></a>三种函数得定义方式(完全支持ES 6,7,8,…)</h2><h3 id="函数声明法"><a href="#函数声明法" class="headerlink" title="函数声明法"></a>函数声明法</h3><pre><code>function add(n1:number,n2:number){
+    return n1+n2;
+}
+console.log(add(1,2));//打印3</code></pre><h3 id="函数表达式法"><a href="#函数表达式法" class="headerlink" title="函数表达式法"></a>函数表达式法</h3><pre><code>var add =function(n1:number,n2:number){
+    return n1+n2;
+}
+console.log(add(1,2));//打印3</code></pre><h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><pre><code>var add =(n1:number,n2:number):number =&gt; {
+    return n1+n2;
+}
+console.log(add(1,2));//打印4 </code></pre><h2 id="函数中变量得作用域"><a href="#函数中变量得作用域" class="headerlink" title="函数中变量得作用域"></a>函数中变量得作用域</h2><p> 变量得作用域:TypeScript函数划分 函数体内得变量 是封闭得 只在函数体内部起作用</p>
+<p> 什么是全局变量，局部变量？</p>
+<p>  函数体外就是全局变量，函数体内得就是局部变量 当重名得时候内部变量不会改变，内部变量引入不了外部变量</p>
+<pre><code>var app = function():void{
+    var abc:string=&apos;asd&apos;;
+    console.log(abc); //asd
+}
+app();
+console.log(abc);//报错</code></pre><h2 id="引用类型-数组"><a href="#引用类型-数组" class="headerlink" title="引用类型-数组"></a>引用类型-数组</h2><p> 引用类型</p>
+<pre><code>let A ={
+    name:&apos;wang&apos;,
+    age=12,
+    webChrom: &apos;wangxuelong.com&apos;,
+    saysome:function(){
+        console.log(&apos;112233&apos;);
+    }
+}
+console.log(A.name);
+A.saysome();</code></pre><p> 数组 –array String Date RegEXP</p>
+<pre><code>let arr:number[] //数值类型
+let arr1:Array&lt;string&gt; //字符串类型
+let arr2:Array&lt;boolean&gt; //布尔类型</code></pre><p> 字面量赋值法</p>
+<pre><code>let arr1:number[] = [];
+let arr2:number[] = [1,2,3,4,5];
+let arr3:Array&lt;string&gt; = [&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;];
+let arr4:Array&lt;boolean&gt; = [true,false,true];</code></pre><p> 构造函数赋值法</p>
+<pre><code>let arr1:number[] = new Array();
+let arr2:number[] = new Array(1,2,3,4,5);
+let arr3:Array&lt;string&gt; = new Array(&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;);
+let arr4:Array&lt;boolean&gt; = new Array(true,false,true);</code></pre><p> 坑🕳</p>
+<pre><code>let arr5:number[]=[1,2,true]//单一类型 不允许会报错</code></pre><p> 元祖是可以的(不建议使用)</p>
+<pre><code>let arr5:[string,number];
+arr5=[&apos;hello&apos;,10]//正确的方法
+//arr5=[10,&apos;he&apos;]//错误的</code></pre><h2 id="引用类型得字符串"><a href="#引用类型得字符串" class="headerlink" title="引用类型得字符串"></a>引用类型得字符串</h2><p> 基本类型字符串，引用类型字符串</p>
+<pre><code>let a:string = &apos;xxbb&apos;;//基本类型
+let b:String = new String(&apos;xxbb&apos;)//引用类型 String:&apos;xxbb&apos;
+console.log(a.length) //4</code></pre><p>查找字符串indexOf</p>
+<pre><code>let some:string=&apos;abcdefg,higklmn&apos;;
+let find:string=&apos;abcdefg&apos;
+console.log(some.indexOf(find));//0
+console.log(some.lastindexOf(find));//0 找最后一个 出现两次 选最后一次</code></pre><p>截取字符串 substring()</p>
+<pre><code>let some:string=&apos;abcdefg,higklmn&apos;;
+let find:string=&apos;abcdefg&apos;
+console.log(some.substring(8));//higklmn
+console.log(some.substring(8,10));//hi</code></pre><p>替换字符串 replace()</p>
+<pre><code>let some:string=&apos;abcdefg,higklmn&apos;;
+let find:string=&apos;abcdefg&apos;;
+console.log(some.replace(&apos;abcdefg&apos;,&apos;xxbb&apos;));//xxbb,higklmn</code></pre><h2 id="引用类型-日期对象"><a href="#引用类型-日期对象" class="headerlink" title="引用类型-日期对象"></a>引用类型-日期对象</h2><p> 1 不传值</p>
+<pre><code>let d:Date = new Date();
+console.log(d); //不是当前中国时区？ 不知道为什么</code></pre><p> 2 传数字</p>
+<pre><code>let d:Date = new Date(1000);//1970-01-01 00:00:00向前数1000毫秒
+console.log(d);//</code></pre><p> 3 传字符串</p>
+<pre><code>let d:Date = new Date(&apos;1970/01/01 00:00:00&apos;);
+let d1:Date = new Date(&apos;1970-01-01 00:00:00&apos;);
+let d2:Date = new Date(&apos;1970-01-01T00:00:00&apos;);
+console.log(d);//1969-12-31T16:00:00.000Z
+console.log(d1);//1969-12-31T16:00:00.000Z
+console.log(d2);//1969-12-31T16:00:00.000Z
+//这里打印结果 我这TS 时区是不一样的   我也不知道为什么</code></pre><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p> RegExp string</p>
+<p> 构造函数声明法</p>
+<pre><code>let reg:RegExp = new RegExp(&quot;js&quot;)//1.匹配字符串 2.修饰符（可选）
+console.log(reg);// /js/</code></pre><p> 字面量声明 查找字符串text(string)返回TRUE FALSE exec(string)返回 【查找的东西 位置 内容】</p>
+<pre><code>let reg:RegExp = /js/
+let findred:string = &apos;jis is js very good&apos;
+console.log(reg.test(findred))//true</code></pre><h2 id="面向对象编程-类的声明和使用"><a href="#面向对象编程-类的声明和使用" class="headerlink" title="面向对象编程-类的声明和使用"></a>面向对象编程-类的声明和使用</h2><p> 概念</p>
+<p>  类：类是对象具体事务的一个抽象</p>
+<p>  对象：对象时的具体表现</p>
+<pre><code>class findgirl{
+    name:string
+    age:number
+    constructor(name:string,age:number){
+        this.name = name;
+        this.age = age;
+    }
+    sayHello(){
+        console.log(&apos;大马猴&apos;);
+    }
+}
+let xxbb:findgirl =new findgirl(&apos;hxx&apos;,18);
+console.log(xxbb)//findgirl { name: &apos;hxx&apos;, age: 18 }
+xxbb.sayHello()//大马猴</code></pre><h2 id="面向对象编程-修饰符"><a href="#面向对象编程-修饰符" class="headerlink" title="面向对象编程-修饰符"></a>面向对象编程-修饰符</h2><p> public //曝光的 protected //保护的  private //私有的</p>
+<pre><code>class DaMahou{
+    public sex:string 
+    protected name:string
+    private age:number
+    public constructor(sex:string,name:string,age:number){
+        this.name = name 
+        this.age = age
+        this.sex = sex
+    }
+    public sayHello(){
+        console.log(&apos;我叫大马猴&apos;)；
+    }
+    protected sayHxx(){
+        console.log(&apos;hxx&apos;);
+    }
+}
+
+var xxbb:DaMahou = new DaMahou(&apos;男&apos;,&apos;xxbb&apos;,24)
+console.log(DaMahou.sex) //男
+console.log(DaMahou.name) //提示收到保护
+console.log(DaMahou.age) //报错 私有属性
+DaMahou.sayHello()//正常
+DaMahou.sayHxx()//报错</code></pre><p> readonly 只读 不能修改</p>
+<pre><code>class findName{
+    public readonly name:string=&apos;xxbb&apos;
+}
+
+var man:findName = new findName()
+man.name = &apos;hxx&apos;//报错</code></pre><h2 id="面向对象编程-继承和重写"><a href="#面向对象编程-继承和重写" class="headerlink" title="面向对象编程-继承和重写"></a>面向对象编程-继承和重写</h2><p> 继承：允许我们创建一个类（子类），从已有的类（父类）上继承所有的属性和方法，子类可以新建父类中没有的属性和方法。</p>
+<pre><code>class b{
+    console.log(12);
+}
+extends//继承 a 继承于b
+class a extends b {
+    public xing:string =&apos;asd&apos;;
+}</code></pre><h2 id="面向对象编程-接口-就是与后端交互-interface"><a href="#面向对象编程-接口-就是与后端交互-interface" class="headerlink" title="面向对象编程-接口 就是与后端交互 interface"></a>面向对象编程-接口 就是与后端交互 interface</h2><pre><code>interface man{
+    name:string
+    sex:string
+    age:number
+    Dmh?:Boolean
+}
+
+let hxx:man = {
+    name:&apos;hxx&apos;,
+    sex:&apos;nv&apos;,
+    age: &apos;18&apos;
+}
+console.log(hxx)//{ name: &apos;hxx&apos;, sex: &apos;nv&apos;, age: 18 }</code></pre><p> 接口规范</p>
+<pre><code>interface FindDMH{
+    (name:string,sex:string):boolean
+}
+let hxx:FindDMH
+hxx=function (name:string,sex:string):boolean{
+    let flag =name.search(sex)
+    return (flag!=1)
+}
+console.log(hxx(&apos;dmh&apos;,&apos;男&apos;))//true</code></pre><h2 id="面向对象编程-命名空间"><a href="#面向对象编程-命名空间" class="headerlink" title="面向对象编程-命名空间"></a>面向对象编程-命名空间</h2><pre><code>namespace shuaiGe{
+    export class Dehua{
+        public name:string = &apos;刘德华&apos;
+        talk(){
+            console.log(&apos;我是帅哥刘德华&apos;)
+        }
+    }
+}
+
+namespace bajie{
+    export class Dehua{
+        public name:string = &apos;马德华&apos;
+        talk(){
+            console.log(&apos;我是二师兄马德华&apos;)
+        }
+    }
+}
+
+let dehua1:shuaiGe.Dehua   = new shuaiGe.Dehua()
+let dehua2:shuaiGe.Dehua   = new bajie.Dehua()
+dehua1.talk()</code></pre><p>结语：感觉TS 就是 好严谨啊  又get到了一个知识点 </p>
+<p> 网站链接 <a href="https://jspang.com/posts/2018/06/27/typesript.html" target="_blank" rel="noopener">https://jspang.com/posts/2018/06/27/typesript.html</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习前端路线</title>
+    <url>/2019/09/09/mybook4/</url>
+    <content><![CDATA[<h1 id="学习前端路线"><a href="#学习前端路线" class="headerlink" title="学习前端路线"></a>学习前端路线</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">仅仅个人用来做笔记，如有不对请指出,</span><br><span class="line">建议右键保存到本地观看。</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/7.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习（JavaScript高级程序设计 第三版）红皮书笔记</title>
+    <url>/2019/09/02/mybook3/</url>
+    <content><![CDATA[<h1 id="学习（JavaScript高级程序设计-第三版）红皮书笔记"><a href="#学习（JavaScript高级程序设计-第三版）红皮书笔记" class="headerlink" title="学习（JavaScript高级程序设计 第三版）红皮书笔记"></a>学习（JavaScript高级程序设计 第三版）红皮书笔记</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">仅仅个人用来做笔记，如有不对请指出,本人购买过此书--!!</span><br><span class="line">真的很敬佩 尼古拉斯 泽卡斯（本书作者）</span><br><span class="line">它既是一门简单得语言，同时他也是最难的一门语言</span><br></pre></td></tr></table></figure>
+<h2 id="第一章-JavaScript-简介"><a href="#第一章-JavaScript-简介" class="headerlink" title="第一章 JavaScript 简介"></a>第一章 JavaScript 简介</h2><h3 id="1-JavaScript-历史回顾"><a href="#1-JavaScript-历史回顾" class="headerlink" title="1. JavaScript 历史回顾"></a>1. JavaScript 历史回顾</h3><p> JavaScript诞生于 1995 年 是当时得主要目的是处理服务端语言得一些验证需求 由于当时得网速太慢，发送到后台比较麻烦 所以才诞生了 JavaScript 具体得请自行 Googole 由于是历史问题，了解就好 没必要计入笔记中！</p>
+<h3 id="2-JavaScript-实现"><a href="#2-JavaScript-实现" class="headerlink" title="2. JavaScript 实现"></a>2. JavaScript 实现</h3><p> 一个完整的JavaScript是由下列三个不同的部分组成得<br> <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/1.png" alt=""></p>
+<p> One 核心 ECMAScript</p>
+<p> Two 文档对象模型 （DOM）</p>
+<p> Three 浏览器对象模型 （BOM）</p>
+<h4 id="1-ECMAScript"><a href="#1-ECMAScript" class="headerlink" title="1. ECMAScript"></a>1. ECMAScript</h4><p> 由ECMA -262 定义的 ECMAScript 与Web浏览器没有依赖关系 可以这么理解 ECMAScript 是一个可以实现各种功能得语言</p>
+<p> 也就是说ECMA - 262 标准 是没参照web浏览器得 它规定了这门语言得下列组成部分</p>
+<ol>
+<li>语法</li>
+<li>类型</li>
+<li>语句</li>
+<li>关键字</li>
+<li>保留字</li>
+<li>操作符</li>
+<li>对象<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">下面是一些ECMAScript 得历史和版本有想了解的请自行买书观看</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="2-文档对象模型（DOM）"><a href="#2-文档对象模型（DOM）" class="headerlink" title="2. 文档对象模型（DOM）"></a>2. 文档对象模型（DOM）</h4><p> 文档对象模型（DOM）是针对 XML 但经过扩展用于HTML 得应用程序接口 DOM把整个页面映射为一个多层节点结构 HTML 或 XML 页面中的每个组成部分都是某种类型得节点 这些节点包含着不同类型得数据</p>
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt; sample Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt; Hello World! &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre><p> 在DOM 中 这个页面可以如图所示分层节点图表示</p>
+<p> 通过 DOM 创建得这个表示文档得树形图 开发人员获得了 控制页面内容和结构得主动权 借助DOM提供得API， 开发人员可以轻松自如得删除，添加，替换任何节点<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/2.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">下面是一些DOM的历史和版本以及级别有想了解的请自行买书观看</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-浏览器对象模型（BOM）"><a href="#3-浏览器对象模型（BOM）" class="headerlink" title="3.浏览器对象模型（BOM）"></a>3.浏览器对象模型（BOM）</h4><p> 从根本上讲，BOM 只处理浏览器窗口和框架 但人们习惯上也把所有针对浏览器的 JavaScript扩展算作BOM的一部分 下面就是一些这样的扩展<br> <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/3.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">下面是一些JS的版本历史有想了解的请自行买书观看</span><br></pre></td></tr></table></figure>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/5.png" alt=""></p>
+<h2 id="第二章-在HTML中使用JavaScript"><a href="#第二章-在HTML中使用JavaScript" class="headerlink" title="第二章 在HTML中使用JavaScript"></a>第二章 在HTML中使用JavaScript</h2><h3 id="lt-script-gt-元素"><a href="#lt-script-gt-元素" class="headerlink" title="&lt;script.&gt; 元素"></a>&lt;script.&gt; 元素</h3><p>  向HTML 页面中插入 JavaScript 的主要方法 这个元素是NETscaoe创造 和实现HTML 4.0 为&lt;script.&gt;定义了6个元素</p>
+<ol>
+<li><p>async: 可选 表示应该立即下载脚本 但是不妨碍页面中的其他操作 比如下载其他资源或等待其他脚本 值队外部脚本文件有效</p>
+</li>
+<li><p>charset: 可选 表示通过src属性指定代码的字符集 由于大多数浏览器会忽视它的值 因此这个属性很少有人用</p>
+</li>
+<li><p>defer: 可选 表示脚本可以延迟到文档完全被解析和显示后执行 至多外部脚本文件有效 ie7 也支持</p>
+</li>
+<li><p>language: 已废弃</p>
+</li>
+<li><p>src: 可选 表示包含要执行代码的外部文件</p>
+</li>
+<li><p>type: 是language的替代属性 编写代码使用的脚本语言内容类型</p>
+<p>在使用JavaScript的时候要指定他的类型 默认是text/JavaScript</p>
+   <script type="text/javascript">
+       function satHi(){
+           alert("HI!");
+       }
+   </script>
+
+<p>在JavaScript 内部的代码从上至下依次解释 </p>
+<p>在嵌入JavaScript 代码时 记住不要再代码中的任何地方出现 “&lt;/script&gt;” 字符串下面这个在浏览器加载就会发生错误</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+   function satHi(){
+       alert(&quot;&lt;/script&gt;&quot;);
+   }</code></pre><p>   </script><br>因为按照解析嵌入式代码的规则 会以为是结束标签 通过加\可以解决 回车上面的那个</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+   function satHi(){
+       alert(&quot;&lt;\/script&gt;&quot;);
+   }</code></pre><p>   </script></p>
+<h4 id="标签的位置"><a href="#标签的位置" class="headerlink" title="标签的位置"></a>标签的位置</h4><p>按照惯例所有的JavaScript元素都应该放在页面&lt;\head&gt;中 例</p>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+  <meta name="generator" content="hexo-theme-ayer">
+       <script type="textjavascript" src="/xx/xx/xx.js"></script>
+   </head>
+   <body>
+       !这里是内容
+   </body>
+   </html>
+
+<p>这种做法的目的就是把所有外部文件引入到相同的位置 head中拥有所有JavaScript 文件意味着必须等到全部JavaScript 代码都被下载解析执行之后 才可以呈现内容 这对于那种多的JavaScript文件的页面 会在下载期间页面空白 为了避免这个问题 现在的浏览器一般把引用的js放在&lt;body.&gt;后面</p>
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+
+   </head>
+   <body>
+       !这里是内容
+        <script type="textjavascript" src="/xx/xx/xx.js"></script>
+   </body>
+   </html>
+
+<p>这样 就可以在解析JavaScript 之前 页面会呈现在浏览器中 用户也会因为事件缩短二感到打开页面速度加快了</p>
+<h4 id="延迟脚本-defer"><a href="#延迟脚本-defer" class="headerlink" title="延迟脚本 defer"></a>延迟脚本 defer</h4><p>HTML4.0为标签定义了defer属性 这个属性的用途是表明脚本在执行时不会影响页面的构造 也就是说 脚本会被延迟到整个页面都解析完毕后在运行 因此在标签中设置defer属性相当于告诉浏览器立即下载 但是延迟执行</p>
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+      <script type="textjavascript" defer="defer" src="/xx/xx/xx.js"></script>
+   </head>
+   <body>
+       !这里是内容
+   </body>
+   </html>
+
+<p>注意：defer只适用于外部脚本文件 这一点在H5总已经规定 </p>
+<h4 id="异步脚本"><a href="#异步脚本" class="headerlink" title="异步脚本"></a>异步脚本</h4><p>HTML5 为标签元素定义了async属性 这个属性与 defer属性类似 都用于改变处理脚本的行为 类似defer async也只适用于外部脚本文件 但是于defer不同的是 async脚本不保证会按照先后顺序执行</p>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+      <script type="textjavascript" async src="/xx/xx/xx.js"></script>
+      <script type="textjavascript" async src="/xx/xx/xx.js"></script>
+   </head>
+   <body>
+       !这里是内容
+   </body>
+   </html>
+上面的代码 js文件不一定哪个第一个加载
+
+<h4 id="4节-5节-由于现在使用的是H5规范-可以跳过太老了"><a href="#4节-5节-由于现在使用的是H5规范-可以跳过太老了" class="headerlink" title="4节 5节 由于现在使用的是H5规范 可以跳过太老了"></a>4节 5节 由于现在使用的是H5规范 可以跳过太老了</h4><h3 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h3><p>在HTML 中嵌入 JavaScript 虽然没有问题 但一般认为最好还是放在外部执行包含JavaScript 的文件 不过，文章说的是没有硬性规定 但是他却有很多优点 例如</p>
+<ol>
+<li>可维护性 编辑不同的HTML页面会造成维护问题 但是都放在一个文件夹里 会很容易维护 而且可以让编程人员跟专注的开发JavaScript 代码</li>
+<li>可缓存 浏览器能够根据具体设置缓存连接的所有外部JavaScript 文件 也就是说 有两个文件用同一个文件 那么就只需要下载一次</li>
+<li>适应未来 这个我感觉就是以后无论怎么更新 引入了也不会麻烦新代码<h3 id="文档模式"><a href="#文档模式" class="headerlink" title="文档模式"></a>文档模式</h3>这里就自行看吧 我也没怎么搞懂<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/6.png" alt=""></li>
+</ol>
+<h2 id="第三章-基本概念"><a href="#第三章-基本概念" class="headerlink" title="第三章 基本概念"></a>第三章 基本概念</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>ECMAScript得语法大量借鉴了C和其他类C语言 因此熟悉这些语言得开发人员在接受这种轻松的语法 会得心应手</p>
+</li>
+</ol>
+<h4 id="区分大小写"><a href="#区分大小写" class="headerlink" title="区分大小写"></a>区分大小写</h4><p> ECMAScript中的一切区分大小写 这就是意味着 TEST 和test是不同的两个</p>
+<h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><h5 id="1-什么是标识符"><a href="#1-什么是标识符" class="headerlink" title="1,什么是标识符"></a>1,什么是标识符</h5><p>标识符就是指变量 函数 属性 得名字 命名有规则：</p>
+<p>1.第一个字符必须是一个字母 下划线或者美元符号 </p>
+<p>2.其他字符可以是字母 下划线 美元符号或数字</p>
+<p>3.国际标准是建议驼峰命名法（也就是第一个字母小写 剩下每个有意义得单词首字母大写 eg：myCar） 没有强制让人使用 </p>
+<h6 id="特别提示"><a href="#特别提示" class="headerlink" title="特别提示"></a>特别提示</h6><p> 不能把关键字 保留字 true false 和null 用作标识符</p>
+<h4 id="2-注释"><a href="#2-注释" class="headerlink" title="2,注释"></a>2,注释</h4><p> ECMAScript 使用C得注释风格 包括单行注释和多行 </p>
+<p> 单行注释 两个 //</p>
+<p> 块级注释 </p>
+<pre><code>/*
+*       //我是没用的
+*
+*/</code></pre><h5 id="特别提示-1"><a href="#特别提示-1" class="headerlink" title="特别提示"></a>特别提示</h5><p> 不是每个新行*都必须要写 只是企业之间喜欢这么用 严谨（个人理解）</p>
+<h4 id="3-严格模式"><a href="#3-严格模式" class="headerlink" title="3,严格模式"></a>3,严格模式</h4><p> ECMAScript5引入了严格模式 （static mode）得概念 严格模式会按照该模式标准检测你得代码 对某些不安全得操作也会抛出异常 要在代码中使用严格模式 添加下面得代码</p>
+<pre><code>&quot;use strict&quot;</code></pre><p> 这段代码看似字符串是为了不破坏ECMAScript3而特定得，在函数体中使用也可以将该函数体转变为 严格模式 </p>
+<p> 严格模式下 JavaScript 的执行结果 会有很大的不同</p>
+<h4 id="4-语句"><a href="#4-语句" class="headerlink" title="4,语句"></a>4,语句</h4><p> ECMAScript 中的语句以一个；结尾 如果省略分号 则由解析器决定 确定结尾</p>
+<p> 虽然语句分号不需要你写 但是官方的说法是不建议你去掉分号</p>
+<p> 原因是加上这个分号可以避免很多错误（我用VUE  尤大大万岁） 然后开发人员可以任意删除空格精简代码 </p>
+<p> 然后 加上分号可以使项目运行加快 因为不用解析器给你加了 ：） </p>
+<h3 id="关键字-保留字"><a href="#关键字-保留字" class="headerlink" title="关键字 保留字"></a>关键字 保留字</h3><p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/8.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>手把手教你报表工具PentahoBI安装和简单使用</title>
+    <url>/2019/06/27/mybook2/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">仅仅个人用来做笔记，如有不对请指出!!</span><br></pre></td></tr></table></figure>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Pentaho是世界上最流行的开源商务智能软件,以工作流为核心的（现在被我们公司收购了），强调面向解决方案而非工具组件的，基于java平台的商业智能(Business Intelligence,BI)套件BI，之所以说是套件是因为它包括一个web server平台和几个工具软件：报表，分析，图表，数据集成，数据挖掘等，可以说包括了商务智能的方方面面。它整合了多个开源项目，目标是和商业BI相抗衡。它偏向于与业务流程相结合的BI解决方案，侧重于大 中型企业应用。它允许商业分析人员或开发人员创建报表，仪表盘，分析模型，商业规则和 BI 流程。 </p>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/01.jpg" alt=""></p>
+<h1 id="用前准备"><a href="#用前准备" class="headerlink" title="用前准备"></a>用前准备</h1><ol>
+<li>先我们如果想使用pentaho那么就得做一些安装上的准备  </li>
+<li>首先使用Pentaho Server的安装使用需要安装jdk，并配置环境变量jdk相关的安装请在网上参考文章就可以了（这里推荐使用jdk1.8版本，至于原因我也说不清，我使用最新版本的jdk就会打不开pentaho Server）  <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1></li>
+<li>第一部完成后就可以安装PentahoBi平台了 下载地址 <a href="https://sourceforge.net/projects/pentaho/files/Business%20Intelligence%20Server/" target="_blank" rel="noopener">https://sourceforge.net/projects/pentaho/files/Business%20Intelligence%20Server/</a><br>我这里下载的是7.1版本，你们可以下载最新版本<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/02.jpg" alt=""><br>下载之后解压|能得到这个文件夹就是安装成功<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/03.jpg" alt=""><br>打开文件夹|能看到这些文件</li>
+</ol>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/04.jpg" alt=""><br>由于pentaho Server自带了tomcat 直接点击启动服务就会进入启动页面 等待启动完成（可能会发生控制台乱码，但是无关紧要，可以不用理会）</p>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/05.jpg" alt=""><br>接下来就可以在浏览器使用localhost:8080 或者 192.168.xx.xx:8080（xx代表你的ip）如果显示这个界面就代表成功了 点击箭头处就可以登录了</p>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/06.jpg" alt=""><br>登录之后就会显示这个页面了，然后就可以使用了</p>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/07.jpg" alt=""></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><ol>
+<li>使用方面我先介绍pentaho得权限设置方面 因为你以后得登录和防止其他人动你得东西 这个权限你可以先设置 防止意外吗，哈哈  </li>
+</ol>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/08.jpg" alt=""><br>2. 接下来是浏览页面  可以用来创建文件和浏览文件或者演示他们<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/09.jpg" alt=""><br>3. 当你选中启动项得时候 至于页面得话我就不展示了 也没啥展示得<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/10.jpg" alt=""><br>4. 编辑器pentahoBI拥有他自己的idea，这也是我觉得比较方便得一点吧，但是还是有点难(ㄒoㄒ)</p>
+<h3 id="窗口图"><a href="#窗口图" class="headerlink" title="窗口图"></a>窗口图<img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/11.jpg" alt=""></h3><h3 id="组件图"><a href="#组件图" class="headerlink" title="组件图"></a>组件图</h3><pre><code>这个算是这个软件得核心 也可以开发很多自定义组件在这里 由于我也在研究怎么开发他的组件 感兴趣得朋友可以先看看</code></pre><p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/12.jpg" alt=""></p>
+<h3 id="数据配置图"><a href="#数据配置图" class="headerlink" title="数据配置图"></a>数据配置图</h3><p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/13.jpg" alt=""></p>
+<h1 id="高级组件得编写规范"><a href="#高级组件得编写规范" class="headerlink" title="高级组件得编写规范"></a>高级组件得编写规范</h1><p>先不写了 留着 以后写😎，我也在研究 哈哈<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/pentho/14.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+</search>

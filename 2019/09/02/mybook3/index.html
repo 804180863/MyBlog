@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="学习（JavaScript高级程序设计 第三版）红皮书笔记," />
+   
+  <meta name="description" content="学习笔记" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    学习（JavaScript高级程序设计 第三版）红皮书笔记 |  王雪龙的博客
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?50f197ec88c3c04868527cf9f28afa0c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-mybook3" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  学习（JavaScript高级程序设计 第三版）红皮书笔记
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/09/02/mybook3/" class="article-date">
+  <time datetime="2019-09-02T04:16:01.000Z" itemprop="datePublished">2019-09-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+  <div class="article-gallery">
+    <div class="article-gallery-photos">
+      
+        
+          <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/4.png" itemprop="image">
+        
+      
+    </div>
+  </div>
+
+
+      
+      <h1 id="学习（JavaScript高级程序设计-第三版）红皮书笔记"><a href="#学习（JavaScript高级程序设计-第三版）红皮书笔记" class="headerlink" title="学习（JavaScript高级程序设计 第三版）红皮书笔记"></a>学习（JavaScript高级程序设计 第三版）红皮书笔记</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">仅仅个人用来做笔记，如有不对请指出,本人购买过此书--!!</span><br><span class="line">真的很敬佩 尼古拉斯 泽卡斯（本书作者）</span><br><span class="line">它既是一门简单得语言，同时他也是最难的一门语言</span><br></pre></td></tr></table></figure>
+<h2 id="第一章-JavaScript-简介"><a href="#第一章-JavaScript-简介" class="headerlink" title="第一章 JavaScript 简介"></a>第一章 JavaScript 简介</h2><h3 id="1-JavaScript-历史回顾"><a href="#1-JavaScript-历史回顾" class="headerlink" title="1. JavaScript 历史回顾"></a>1. JavaScript 历史回顾</h3><p> JavaScript诞生于 1995 年 是当时得主要目的是处理服务端语言得一些验证需求 由于当时得网速太慢，发送到后台比较麻烦 所以才诞生了 JavaScript 具体得请自行 Googole 由于是历史问题，了解就好 没必要计入笔记中！</p>
+<h3 id="2-JavaScript-实现"><a href="#2-JavaScript-实现" class="headerlink" title="2. JavaScript 实现"></a>2. JavaScript 实现</h3><p> 一个完整的JavaScript是由下列三个不同的部分组成得<br> <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/1.png" alt=""></p>
+<p> One 核心 ECMAScript</p>
+<p> Two 文档对象模型 （DOM）</p>
+<p> Three 浏览器对象模型 （BOM）</p>
+<h4 id="1-ECMAScript"><a href="#1-ECMAScript" class="headerlink" title="1. ECMAScript"></a>1. ECMAScript</h4><p> 由ECMA -262 定义的 ECMAScript 与Web浏览器没有依赖关系 可以这么理解 ECMAScript 是一个可以实现各种功能得语言</p>
+<p> 也就是说ECMA - 262 标准 是没参照web浏览器得 它规定了这门语言得下列组成部分</p>
+<ol>
+<li>语法</li>
+<li>类型</li>
+<li>语句</li>
+<li>关键字</li>
+<li>保留字</li>
+<li>操作符</li>
+<li>对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下面是一些ECMAScript 得历史和版本有想了解的请自行买书观看</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="2-文档对象模型（DOM）"><a href="#2-文档对象模型（DOM）" class="headerlink" title="2. 文档对象模型（DOM）"></a>2. 文档对象模型（DOM）</h4><p> 文档对象模型（DOM）是针对 XML 但经过扩展用于HTML 得应用程序接口 DOM把整个页面映射为一个多层节点结构 HTML 或 XML 页面中的每个组成部分都是某种类型得节点 这些节点包含着不同类型得数据</p>
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt; sample Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt; Hello World! &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre><p> 在DOM 中 这个页面可以如图所示分层节点图表示</p>
+<p> 通过 DOM 创建得这个表示文档得树形图 开发人员获得了 控制页面内容和结构得主动权 借助DOM提供得API， 开发人员可以轻松自如得删除，添加，替换任何节点<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/2.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下面是一些DOM的历史和版本以及级别有想了解的请自行买书观看</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-浏览器对象模型（BOM）"><a href="#3-浏览器对象模型（BOM）" class="headerlink" title="3.浏览器对象模型（BOM）"></a>3.浏览器对象模型（BOM）</h4><p> 从根本上讲，BOM 只处理浏览器窗口和框架 但人们习惯上也把所有针对浏览器的 JavaScript扩展算作BOM的一部分 下面就是一些这样的扩展<br> <img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/3.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下面是一些JS的版本历史有想了解的请自行买书观看</span><br></pre></td></tr></table></figure>
+<p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/5.png" alt=""></p>
+<h2 id="第二章-在HTML中使用JavaScript"><a href="#第二章-在HTML中使用JavaScript" class="headerlink" title="第二章 在HTML中使用JavaScript"></a>第二章 在HTML中使用JavaScript</h2><h3 id="lt-script-gt-元素"><a href="#lt-script-gt-元素" class="headerlink" title="&lt;script.&gt; 元素"></a>&lt;script.&gt; 元素</h3><p>  向HTML 页面中插入 JavaScript 的主要方法 这个元素是NETscaoe创造 和实现HTML 4.0 为&lt;script.&gt;定义了6个元素</p>
+<ol>
+<li><p>async: 可选 表示应该立即下载脚本 但是不妨碍页面中的其他操作 比如下载其他资源或等待其他脚本 值队外部脚本文件有效</p>
+</li>
+<li><p>charset: 可选 表示通过src属性指定代码的字符集 由于大多数浏览器会忽视它的值 因此这个属性很少有人用</p>
+</li>
+<li><p>defer: 可选 表示脚本可以延迟到文档完全被解析和显示后执行 至多外部脚本文件有效 ie7 也支持</p>
+</li>
+<li><p>language: 已废弃</p>
+</li>
+<li><p>src: 可选 表示包含要执行代码的外部文件</p>
+</li>
+<li><p>type: 是language的替代属性 编写代码使用的脚本语言内容类型</p>
+<p>在使用JavaScript的时候要指定他的类型 默认是text/JavaScript</p>
+   <script type="text/javascript">
+       function satHi(){
+           alert("HI!");
+       }
+   </script>
+
+<p>在JavaScript 内部的代码从上至下依次解释 </p>
+<p>在嵌入JavaScript 代码时 记住不要再代码中的任何地方出现 “&lt;/script&gt;” 字符串下面这个在浏览器加载就会发生错误</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+   function satHi(){
+       alert(&quot;&lt;/script&gt;&quot;);
+   }</code></pre><p>   </script><br>因为按照解析嵌入式代码的规则 会以为是结束标签 通过加\可以解决 回车上面的那个</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+   function satHi(){
+       alert(&quot;&lt;\/script&gt;&quot;);
+   }</code></pre><p>   </script></p>
+<h4 id="标签的位置"><a href="#标签的位置" class="headerlink" title="标签的位置"></a>标签的位置</h4><p>按照惯例所有的JavaScript元素都应该放在页面&lt;\head&gt;中 例</p>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+  <meta name="generator" content="hexo-theme-ayer">
+       <script type="textjavascript" src="/xx/xx/xx.js"></script>
+   </head>
+   <body>
+       !这里是内容
+   </body>
+   </html>
+
+<p>这种做法的目的就是把所有外部文件引入到相同的位置 head中拥有所有JavaScript 文件意味着必须等到全部JavaScript 代码都被下载解析执行之后 才可以呈现内容 这对于那种多的JavaScript文件的页面 会在下载期间页面空白 为了避免这个问题 现在的浏览器一般把引用的js放在&lt;body.&gt;后面</p>
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+
+   </head>
+   <body>
+       !这里是内容
+        <script type="textjavascript" src="/xx/xx/xx.js"></script>
+   </body>
+   </html>
+
+<p>这样 就可以在解析JavaScript 之前 页面会呈现在浏览器中 用户也会因为事件缩短二感到打开页面速度加快了</p>
+<h4 id="延迟脚本-defer"><a href="#延迟脚本-defer" class="headerlink" title="延迟脚本 defer"></a>延迟脚本 defer</h4><p>HTML4.0为标签定义了defer属性 这个属性的用途是表明脚本在执行时不会影响页面的构造 也就是说 脚本会被延迟到整个页面都解析完毕后在运行 因此在标签中设置defer属性相当于告诉浏览器立即下载 但是延迟执行</p>
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+      <script type="textjavascript" defer="defer" src="/xx/xx/xx.js"></script>
+   </head>
+   <body>
+       !这里是内容
+   </body>
+   </html>
+
+<p>注意：defer只适用于外部脚本文件 这一点在H5总已经规定 </p>
+<h4 id="异步脚本"><a href="#异步脚本" class="headerlink" title="异步脚本"></a>异步脚本</h4><p>HTML5 为标签元素定义了async属性 这个属性与 defer属性类似 都用于改变处理脚本的行为 类似defer async也只适用于外部脚本文件 但是于defer不同的是 async脚本不保证会按照先后顺序执行</p>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Document</title>
+      <script type="textjavascript" async src="/xx/xx/xx.js"></script>
+      <script type="textjavascript" async src="/xx/xx/xx.js"></script>
+   </head>
+   <body>
+       !这里是内容
+   </body>
+   </html>
+上面的代码 js文件不一定哪个第一个加载
+
+<h4 id="4节-5节-由于现在使用的是H5规范-可以跳过太老了"><a href="#4节-5节-由于现在使用的是H5规范-可以跳过太老了" class="headerlink" title="4节 5节 由于现在使用的是H5规范 可以跳过太老了"></a>4节 5节 由于现在使用的是H5规范 可以跳过太老了</h4><h3 id="嵌入代码与外部文件"><a href="#嵌入代码与外部文件" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h3><p>在HTML 中嵌入 JavaScript 虽然没有问题 但一般认为最好还是放在外部执行包含JavaScript 的文件 不过，文章说的是没有硬性规定 但是他却有很多优点 例如</p>
+<ol>
+<li>可维护性 编辑不同的HTML页面会造成维护问题 但是都放在一个文件夹里 会很容易维护 而且可以让编程人员跟专注的开发JavaScript 代码</li>
+<li>可缓存 浏览器能够根据具体设置缓存连接的所有外部JavaScript 文件 也就是说 有两个文件用同一个文件 那么就只需要下载一次</li>
+<li>适应未来 这个我感觉就是以后无论怎么更新 引入了也不会麻烦新代码<h3 id="文档模式"><a href="#文档模式" class="headerlink" title="文档模式"></a>文档模式</h3>这里就自行看吧 我也没怎么搞懂<br><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/6.png" alt=""></li>
+</ol>
+<h2 id="第三章-基本概念"><a href="#第三章-基本概念" class="headerlink" title="第三章 基本概念"></a>第三章 基本概念</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>ECMAScript得语法大量借鉴了C和其他类C语言 因此熟悉这些语言得开发人员在接受这种轻松的语法 会得心应手</p>
+</li>
+</ol>
+<h4 id="区分大小写"><a href="#区分大小写" class="headerlink" title="区分大小写"></a>区分大小写</h4><p> ECMAScript中的一切区分大小写 这就是意味着 TEST 和test是不同的两个</p>
+<h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><h5 id="1-什么是标识符"><a href="#1-什么是标识符" class="headerlink" title="1,什么是标识符"></a>1,什么是标识符</h5><p>标识符就是指变量 函数 属性 得名字 命名有规则：</p>
+<p>1.第一个字符必须是一个字母 下划线或者美元符号 </p>
+<p>2.其他字符可以是字母 下划线 美元符号或数字</p>
+<p>3.国际标准是建议驼峰命名法（也就是第一个字母小写 剩下每个有意义得单词首字母大写 eg：myCar） 没有强制让人使用 </p>
+<h6 id="特别提示"><a href="#特别提示" class="headerlink" title="特别提示"></a>特别提示</h6><p> 不能把关键字 保留字 true false 和null 用作标识符</p>
+<h4 id="2-注释"><a href="#2-注释" class="headerlink" title="2,注释"></a>2,注释</h4><p> ECMAScript 使用C得注释风格 包括单行注释和多行 </p>
+<p> 单行注释 两个 //</p>
+<p> 块级注释 </p>
+<pre><code>/*
+*       //我是没用的
+*
+*/</code></pre><h5 id="特别提示-1"><a href="#特别提示-1" class="headerlink" title="特别提示"></a>特别提示</h5><p> 不是每个新行*都必须要写 只是企业之间喜欢这么用 严谨（个人理解）</p>
+<h4 id="3-严格模式"><a href="#3-严格模式" class="headerlink" title="3,严格模式"></a>3,严格模式</h4><p> ECMAScript5引入了严格模式 （static mode）得概念 严格模式会按照该模式标准检测你得代码 对某些不安全得操作也会抛出异常 要在代码中使用严格模式 添加下面得代码</p>
+<pre><code>&quot;use strict&quot;</code></pre><p> 这段代码看似字符串是为了不破坏ECMAScript3而特定得，在函数体中使用也可以将该函数体转变为 严格模式 </p>
+<p> 严格模式下 JavaScript 的执行结果 会有很大的不同</p>
+<h4 id="4-语句"><a href="#4-语句" class="headerlink" title="4,语句"></a>4,语句</h4><p> ECMAScript 中的语句以一个；结尾 如果省略分号 则由解析器决定 确定结尾</p>
+<p> 虽然语句分号不需要你写 但是官方的说法是不建议你去掉分号</p>
+<p> 原因是加上这个分号可以避免很多错误（我用VUE  尤大大万岁） 然后开发人员可以任意删除空格精简代码 </p>
+<p> 然后 加上分号可以使项目运行加快 因为不用解析器给你加了 ：） </p>
+<h3 id="关键字-保留字"><a href="#关键字-保留字" class="headerlink" title="关键字 保留字"></a>关键字 保留字</h3><p><img src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/mybook3/8.png" alt=""></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/09/02/mybook3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2019/09/09/mybook4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            学习前端路线
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/06/27/mybook2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">手把手教你报表工具PentahoBI安装和简单使用</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '8oWxOXTDnVhLeiRpwCePdFui-gzGzoHsz',
+        app_key: 'U4luMDoTXlQ6DrMjExMEoNcb',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> XueLong Wang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="王雪龙的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/comment">留言</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/AliPayQR.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://wangdeimg.oss-cn-beijing.aliyuncs.com/WeChanSQ.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+</body>
+
+</html>
